@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" ?>
+<mappings>
+  <!--<map key="coreBadIpLogPath">
+    <to>/configuration/loggingConfiguration/listeners/add/attribute[@formatter='BadIp Formatter']/@fileName</to>
+  </map>-->
+  <map key="environmentName">
+    <to>/configuration/appSettings/add[@key='app.environment']/@value</to>
+  </map>
+  <map key="coreDbHost">
+    <to>/configuration/appSettings/add[@key='app.coreDbHost']/@value</to>
+  </map>
+  <map key="coreDbUser">
+    <to>/configuration/appSettings/add[@key='app.coreDbUser']/@value</to>
+  </map>
+</mappings>
