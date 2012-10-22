@@ -30,7 +30,7 @@ namespace ConfigurationInjector
             get
             {
                 return Path.GetDirectoryName(
-                   System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase) + "\\";
+                   System.Reflection.Assembly.GetExecutingAssembly().Location) + "\\";
             }
         }
 

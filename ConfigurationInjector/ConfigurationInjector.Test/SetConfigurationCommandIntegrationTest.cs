@@ -17,10 +17,10 @@ namespace ConfigurationInjector.Test
             // Arrange
             var scriptText = String.Format(
             @"
-                cd '{0}'
-                Import-Module './ConfigurationInjector.dll'
-                Set-Configuration -WorkingDirectory '{0}'
-            ", GetAssemblyPath());
+                cd '{0}' {1}
+                Import-Module './ConfigurationInjector.dll'{1}
+                Set-Configuration -WorkingDirectory '{0}' {1}
+            ", GetAssemblyPath(), Environment.NewLine);
             
             // Act
             try
@@ -48,9 +48,9 @@ namespace ConfigurationInjector.Test
 
         private string GetAssemblyPath()
         {
-            var codeBase = System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase;
+            var codeBase = System.Reflection.Assembly.GetExecutingAssembly().Location;
             var directory = Path.GetDirectoryName(codeBase);
-            return directory.Replace("file:\\", String.Empty) + "\\";
+            return directory + "\\";
         }
 
         private void RunScript(string scriptText)
