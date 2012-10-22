@@ -13,11 +13,6 @@ namespace ConfigurationInjector.Test
     public class SetConfigurationCommandIntegrationTest
     {
 
-        [TestInitialize]
-        public void TestSetup()
-        {
-
-        }
         [TestMethod]
         public void SetConfiguration_TryInjectionLocalFiles_FilesAreUpdated()
         {
