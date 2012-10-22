@@ -17,7 +17,7 @@ namespace ConfigurationInjector.Test
             // Arrange
             var scriptText = String.Format(
             @"
-                Import-Module ./ConfigurationInjector.dll
+                Import-Module {0}ConfigurationInjector.dll
                 Set-Configuration -WorkingDirectory {0}
             ", GetAssemblyPath());
             
