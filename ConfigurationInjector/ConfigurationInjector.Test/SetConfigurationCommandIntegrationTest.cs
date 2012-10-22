@@ -11,6 +11,24 @@ namespace ConfigurationInjector.Test
     [TestClass]
     public class SetConfigurationCommandIntegrationTest
     {
+        private Runspace _runspace;
+        
+        [TestInitialize]
+        public void TestSetup()
+        {
+            // create Powershell runspace
+            _runspace = RunspaceFactory.CreateRunspace();
+            _runspace.Open();
+
+        }
+
+        [TestCleanup]
+        public void TestTearDown()
+        {
+            // close the runspace
+            _runspace.Close();
+
+        }
         [TestMethod]
         public void SetConfiguration_TryInjectionLocalFiles_FilesAreUpdated()
         {
@@ -21,21 +39,25 @@ namespace ConfigurationInjector.Test
                 Set-Configuration -WorkingDirectory ""{0}""
             ", GetAssemblyPath());
             
-
             // Act
+            ExecuteLine(string.Format("Import-Module \"{0}ConfigurationInjector.dll\"", GetAssemblyPath()));
+            ExecuteLine(string.Format("Set-Configuration -WorkingDirectory \"{0}\"", GetAssemblyPath()));
+            
+            // Assert
+            AssertIfConfigurationIsAsExpected();            
+        }
+
+        private void ExecuteLine(string scriptLine)
+        {
             try
             {
                 // try-catch block, because powershell errors are thrown from the runspace
-                RunScript(scriptText);
-            } 
-            catch(Exception exception)
+                RunScript(scriptLine);
+            }
+            catch (Exception exception)
             {
                 Assert.Fail(exception.Message);
             }
-            
-
-            // Assert
-            AssertIfConfigurationIsAsExpected();            
         }
 
         private void AssertIfConfigurationIsAsExpected()
@@ -55,20 +77,16 @@ namespace ConfigurationInjector.Test
 
         private void RunScript(string scriptText)
         {
-            // create Powershell runspace
-            Runspace runspace = RunspaceFactory.CreateRunspace();
-            runspace.Open();
-
+            
             // create a pipeline and feed it the script text
-            Pipeline pipeline = runspace.CreatePipeline();
+            Pipeline pipeline = _runspace.CreatePipeline();
             pipeline.Commands.AddScript(scriptText);
             pipeline.Commands.Add("Out-String");
 
             // execute the script
             pipeline.Invoke();
 
-            // close the runspace
-            runspace.Close();
+           
         }
     }
 }
