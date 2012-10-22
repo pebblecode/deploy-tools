@@ -63,7 +63,6 @@ namespace ConfigurationInjector
             
             // Validate them
             ValidateDocAgaisntSchema(mapDoc, Configuration.MapSchemaPath);
-            ValidateDocAgaisntSchema(configDoc, Configuration.ConfigSchemaPath);
 
             // Inject the configuration from settings.xml
             InjectConfiguration(mapDoc, configDoc);
