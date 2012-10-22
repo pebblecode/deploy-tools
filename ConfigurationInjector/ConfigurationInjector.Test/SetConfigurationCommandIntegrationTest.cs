@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Management.Automation.Runspaces;
+using System.Reflection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ConfigurationInjector.Test
@@ -11,22 +12,10 @@ namespace ConfigurationInjector.Test
     [TestClass]
     public class SetConfigurationCommandIntegrationTest
     {
-        private Runspace _runspace;
-        
+
         [TestInitialize]
         public void TestSetup()
         {
-            // create Powershell runspace
-            _runspace = RunspaceFactory.CreateRunspace();
-            _runspace.Open();
-
-        }
-
-        [TestCleanup]
-        public void TestTearDown()
-        {
-            // close the runspace
-            _runspace.Close();
 
         }
         [TestMethod]
@@ -38,26 +27,23 @@ namespace ConfigurationInjector.Test
                 Import-Module ""{0}ConfigurationInjector.dll""
                 Set-Configuration -WorkingDirectory ""{0}""
             ", GetAssemblyPath());
-            
-            // Act
-            ExecuteLine(string.Format("Import-Module \"{0}ConfigurationInjector.dll\"", GetAssemblyPath()));
-            ExecuteLine(string.Format("Set-Configuration -WorkingDirectory \"{0}\"", GetAssemblyPath()));
-            
-            // Assert
-            AssertIfConfigurationIsAsExpected();            
-        }
 
-        private void ExecuteLine(string scriptLine)
-        {
+            Assert.Fail(GetAssemblyPath());
+
+            // Act
             try
             {
                 // try-catch block, because powershell errors are thrown from the runspace
-                RunScript(scriptLine);
-            }
-            catch (Exception exception)
+                RunScript(scriptText);
+            } 
+            catch(Exception exception)
             {
                 Assert.Fail(exception.Message);
             }
+            
+
+            // Assert
+            AssertIfConfigurationIsAsExpected();            
         }
 
         private void AssertIfConfigurationIsAsExpected()
@@ -77,16 +63,20 @@ namespace ConfigurationInjector.Test
 
         private void RunScript(string scriptText)
         {
-            
+            // create Powershell runspace
+            Runspace runspace = RunspaceFactory.CreateRunspace();
+            runspace.Open();
+
             // create a pipeline and feed it the script text
-            Pipeline pipeline = _runspace.CreatePipeline();
+            Pipeline pipeline = runspace.CreatePipeline();
             pipeline.Commands.AddScript(scriptText);
             pipeline.Commands.Add("Out-String");
 
             // execute the script
             pipeline.Invoke();
 
-           
+            // close the runspace
+            runspace.Close();
         }
     }
 }
