@@ -17,11 +17,11 @@ namespace ConfigurationInjector.Test
             // Arrange
             var scriptText = String.Format(
             @"
-                cd '{0}' {1}
-                Import-Module './ConfigurationInjector.dll'{1}
-                Set-Configuration -WorkingDirectory '{0}' {1}
-            ", GetAssemblyPath(), Environment.NewLine);
+                Import-Module ./ConfigurationInjector.dll
+                Set-Configuration -WorkingDirectory {0}
+            ", GetAssemblyPath());
             
+
             // Act
             try
             {
