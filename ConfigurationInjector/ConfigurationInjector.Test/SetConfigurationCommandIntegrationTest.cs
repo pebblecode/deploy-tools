@@ -23,8 +23,6 @@ namespace ConfigurationInjector.Test
                 Set-Configuration -WorkingDirectory ""{0}""
             ", GetAssemblyPath());
 
-            Assert.Fail(GetAssemblyPath() + Environment.NewLine + Assembly.GetExecutingAssembly().CodeBase + Environment.NewLine + Assembly.GetAssembly(new SetConfigurationCommand().GetType()).Location);
-
             // Act
             try
             {
