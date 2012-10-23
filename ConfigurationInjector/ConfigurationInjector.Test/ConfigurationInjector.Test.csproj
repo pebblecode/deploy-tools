@@ -99,6 +99,7 @@
     <ProjectReference Include="..\ConfigurationInjector\ConfigurationInjector.csproj">
       <Project>{e7dc62a2-c8c1-42ae-ad97-8a2b593472d3}</Project>
       <Name>ConfigurationInjector</Name>
+      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <Choose>
