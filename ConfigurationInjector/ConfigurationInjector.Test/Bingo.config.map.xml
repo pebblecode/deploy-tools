@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" ?>
+<mappings>
+
+  <!--Logging Listeners-->
+  <map key="bingo.systemLogListener.fileName">
+    <to>/configuration/loggingConfiguration/listeners/add[@name='System Log File Trace Listener']/@fileName</to>
+  </map>
+  <map key="bingo.serverLogListener.fileName">
+    <to>/configuration/loggingConfiguration/listeners/add[@name='Server Error Log File Trace Listener']/@fileName</to>
+  </map>
+  <map key="bingo.systemProfilerLogListener.fileName">
+    <to>
+      /configuration/loggingConfiguration/listeners/add[@name='SystemProfiler Log File Trace Listener']/@fileName
+    </to>
+  </map>
+  <map key="bingo.dbProfilerLogListener.fileName">
+    <to>/configuration/loggingConfiguration/listeners/add[@name='DbProfiler Log File Trace Listener']/@fileName</to>
+  </map>
+  <map key="bingo.messageProfilerLogListener.fileName">
+    <to>/configuration/loggingConfiguration/listeners/add[@name='MessageProfiler Log File Trace Listener']/@fileName</to>
+  </map>
+  <map key="bingo.badIpLogListener.fileName">
+    <to>/configuration/loggingConfiguration/listeners/add[@name='BadIp Log File Trace Listener']/@fileName</to>
+  </map>
+  <map key="bingo.clientErrorLogListener.fileName">
+    <to>/configuration/loggingConfiguration/listeners/add[@name='Client Error Log File Trace Listener']/@fileName</to>
+  </map>
+  <!--#####################################-->
+
+  <!--Logging Categories-->
+  <map key="bingo.gameLog.categorySource">
+    <to>/configuration/loggingConfiguration/categorySources/add[@name='Game']/@switchValue</to>
+  </map>
+  <map key="bingo.messageBadIpLog.categorySource">
+    <to>/configuration/loggingConfiguration/categorySources/add[@name='MessageBadIp']/@switchValue</to>
+  </map>
+  <map key="bingo.messageBrokerLog.categorySource">
+    <to>/configuration/loggingConfiguration/categorySources/add[@name='MessageBroker']/@switchValue</to>
+  </map>
+  <map key="bingo.messageDataLog.categorySource">
+    <to>/configuration/loggingConfiguration/categorySources/add[@name='MessageData']/@switchValue</to>
+  </map>
+  <map key="bingo.roomLog.categorySource">
+    <to>/configuration/loggingConfiguration/categorySources/add[@name='Room']/@switchValue</to>
+  </map>
+  <map key="bingo.schedulerLog.categorySource">
+    <to>/configuration/loggingConfiguration/categorySources/add[@name='Scheduler']/@switchValue</to>
+  </map>
+  <map key="bingo.serverErrorLog.categorySource">
+    <to>/configuration/loggingConfiguration/categorySources/add[@name='ServerError']/@switchValue</to>
+  </map>
+  <map key="bingo.generalErrorLog.categorySource">
+    <to>/configuration/loggingConfiguration/categorySources/add[@name='GeneralError']/@switchValue</to>
+  </map>
+  <map key="bingo.dbProfilerLog.categorySource">
+    <to>/configuration/loggingConfiguration/categorySources/add[@name='DbProfiler']/@switchValue</to>
+  </map>
+  <map key="bingo.msgProfilerLog.categorySource">
+    <to>/configuration/loggingConfiguration/categorySources/add[@name='MsgProfiler']/@switchValue</to>
+  </map>
+  <map key="bingo.sysProfilerLog.categorySource">
+    <to>/configuration/loggingConfiguration/categorySources/add[@name='SysProfiler']/@switchValue</to>
+  </map>
+  <map key="bingo.lockingLog.categorySource">
+    <to>/configuration/loggingConfiguration/categorySources/add[@name='Locking']/@switchValue</to>
+  </map>
+  <map key="bingo.taskLog.categorySource">
+    <to>/configuration/loggingConfiguration/categorySources/add[@name='Task']/@switchValue</to>
+  </map>
+  <map key="bingo.robotLog.categorySource">
+    <to>/configuration/loggingConfiguration/categorySources/add[@name='Robot']/@switchValue</to>
+  </map>
+  <map key="bingo.jsonpClientProxyLog.categorySource">
+    <to>/configuration/loggingConfiguration/categorySources/add[@name='JsonpClientProxy']/@switchValue</to>
+  </map>
+  <map key="bingo.httpMessagingLog.categorySource">
+    <to>/configuration/loggingConfiguration/categorySources/add[@name='HttpMessaging']/@switchValue</to>
+  </map>
+  <map key="bingo.sgpMediatorLog.categorySource">
+    <to>/configuration/loggingConfiguration/categorySources/add[@name='SGPMediator']/@switchValue</to>
+  </map>
+  <!--#####################################-->
+
+  <!--Logging Special Events-->
+  <map key="bingo.allEventsLog.specialSource">
+    <to>/configuration/loggingConfiguration/specialSources/allEvents/@switchValue</to>
+  </map>
+  <map key="bingo.notProcessedLog.specialSource">
+    <to>/configuration/loggingConfiguration/specialSources/notProcessed/@switchValue</to>
+  </map>
+  <map key="bingo.errorsLog.specialSource">
+    <to>/configuration/loggingConfiguration/specialSources/errors/@switchValue</to>
+  </map>
+  <!--#####################################-->
+
+  <!--Endpoint behaviors-->
+  <map key="bingo.webXmlOverHttpEndpointBehavior.helpEnabled">
+    <to>/configuration/system.serviceModel/behaviors/endpointBehaviors/behavior[@name='webXmlOverHttpBehavior']/webHttp/@helpEnabled</to>
+  </map>
+  <map key="bingo.webJsonOverHttpEndpointBehaviour.helpEnabled">
+    <to>/configuration/system.serviceModel/behaviors/endpointBehaviors/behavior[@name='webJsonOverHttpBehavior']/webHttp/@helpEnabled</to>
+  </map>
+  <map key="bingo.netNamedPipeEndpointBehaviour.integrationToken">
+    <to>/configuration/system.serviceModel/behaviors/endpointBehaviors/behavior[@name='netNamedPipeBehaviour']/gameRTNamedPipeBehavior/@integrationToken</to>
+  </map>
+  <!--#####################################-->
+
+  <!--Service behaviors-->
+  <map key="bingo.myServiceTypeServiceBehavior.httpGetEnabled">
+    <to>/configuration/system.serviceModel/behaviors/serviceBehaviors/behavior[@name='MyServiceTypeBehaviors']/serviceMetadata/@httpGetEnabled</to>
+  </map>
+  <map key="bingo.myServiceTypeServiceBehavior.includeExceptionDetailInFaults">
+    <to>/configuration/system.serviceModel/behaviors/serviceBehaviors/behavior[@name='MyServiceTypeBehaviors']/serviceDebug/@includeExceptionDetailInFaults</to>
+  </map>
+  <map key="bingo.returnFaultsServiceBehavior.includeExceptionDetailInFaults">
+    <to>/configuration/system.serviceModel/behaviors/serviceBehaviors/behavior[@name='returnFaults']/serviceDebug/@includeExceptionDetailInFaults</to>
+  </map>
+  <!--#####################################-->
+
+  <!--Bindings-->
+  <map key="bingo.webHttpBindingConfig.hostNameComparisonMode">
+    <to>/configuration/system.serviceModel/bindings/webHttpBinding/binding[@name='webHttpBindingConfig']/@hostNameComparisonMode</to>
+  </map>
+  <map key="bingo.webHttpsBindingConfig.hostNameComparisonMode">
+    <to>/configuration/system.serviceModel/bindings/webHttpBinding/binding[@name='webHttpsBindingConfig']/@hostNameComparisonMode</to>
+  </map>
+  <!--#####################################-->
+
+  <!--Endpoints-->
+  <map key="environment.GameRT.EndpointAddress">
+    <to>/configuration/system.serviceModel/client/endpoint[@name='GameRT']/@address</to>
+  </map>
+  <!--#####################################-->
+
+  <!--App settings-->
+  <map key="environment.name">
+    <to>/configuration/appSettings/add[@key='app.environment']/@value</to>
+  </map>
+  <map key="environment.httpHostName">
+    <to>/configuration/appSettings/add[@key='httpHostName']/@value</to>
+  </map>
+  <map key="bingo.dbConnectionstring">
+    <to>/configuration/appSettings/add[@key='db.engine.connectionString']/@value</to>
+  </map>
+  <map key="bingo.dbPortNumber">
+    <to>/configuration/appSettings/add[@key='db.engine.portNo']/@value</to>
+  </map>
+  <map key="bingo.dbHost">
+    <to>/configuration/appSettings/add[@key='db.engine.dbHost']/@value</to>
+  </map>
+  <map key="bingo.dbName">
+    <to>/configuration/appSettings/add[@key='db.engine.databaseName']/@value</to>
+  </map>
+  <map key="bingo.firstHttpPortNumber">
+    <to>/configuration/appSettings/add[@key='firstHttpPortNumber']/@value</to>
+  </map>
+  <map key="bingo.lastHttpPortNumber">
+    <to>/configuration/appSettings/add[@key='lastHttpPortNumber']/@value</to>
+  </map>
+  <map key="bingo.profileLogPeriod">
+    <to>/configuration/appSettings/add[@key='profileLogPeriod']/@value</to>
+  </map>
+  <map key="bingo.secondsBeforeClearingProfileStats">
+    <to>/configuration/appSettings/add[@key='secondsBeforeClearingProfileStats']/@value</to>
+  </map>
+  <map key="bingo.randomNumberGeneratorServiceUrl">
+    <to>/configuration/appSettings/add[@key='randomNumberGeneratorServiceUrl']/@value</to>
+  </map>
+  <map key="bingo.deadZoneStartTimeHours">
+    <to>/configuration/appSettings/add[@key='deadZoneStartTimeHours']/@value</to>
+  </map>
+  <map key="bingo.deadZoneStartTimeMinutes">
+    <to>/configuration/appSettings/add[@key='deadZoneStartTimeMinutes']/@value</to>
+  </map>
+  <map key="bingo.deadZonePeriodMinutes">
+    <to>/configuration/appSettings/add[@key='deadZonePeriodMinutes']/@value</to>
+  </map>
+  <map key="bingo.minSecondsBetweenClientHeartbeats">
+    <to>/configuration/appSettings/add[@key='minSecondsBetweenClientHeartbeats']/@value</to>
+  </map>
+  <map key="bingo.heartbeatGroupsPerRoom">
+    <to>/configuration/appSettings/add[@key='heartbeatGroupsPerRoom']/@value</to>
+  </map>
+  <map key="bingo.heartbeatOffsetPerRoomSeconds">
+    <to>/configuration/appSettings/add[@key='heartbeatOffsetPerRoomSeconds']/@value</to>
+  </map>
+  <!--#####################################-->
+
+</mappings>

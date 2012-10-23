@@ -40,7 +40,7 @@ namespace ConfigurationInjector
         {
             LoadSettingsFile();
 
-            ValidateDocAgaisntSchema(_settings, Configuration.SettingsSchemaPath);
+            ValidateDocAgaisntSchema(_settings, Configuration.SettingsSchemaPath, "settings.xml");
 
             base.BeginProcessing();
         }
@@ -57,13 +57,15 @@ namespace ConfigurationInjector
 
         private void ProcessMapFile(string fileName)
         {
-            // Get documents
+            // Get map document
             XDocument mapDoc = XDocument.Load(fileName);
+
+            // Validate it
+            ValidateDocAgaisntSchema(mapDoc, Configuration.MapSchemaPath, System.IO.Path.GetFileName(fileName));
+
+            // Get config document
             XDocument configDoc = LoadConfigurationFile(fileName);
             
-            // Validate them
-            ValidateDocAgaisntSchema(mapDoc, Configuration.MapSchemaPath);
-
             // Inject the configuration from settings.xml
             InjectConfiguration(mapDoc, configDoc);
 
@@ -78,11 +80,11 @@ namespace ConfigurationInjector
             configDoc.Save(configFileName, SaveOptions.None);
         }
 
-        private void ValidateDocAgaisntSchema(XDocument doc, string schemaPath)
+        private void ValidateDocAgaisntSchema(XDocument doc, string schemaPath, string fileName)
         {
             if (!IsXDocumentValid(doc, schemaPath))
             {
-                throw new InvalidDataException(String.Format("'{0}' is not in the correct format!"));
+                throw new InvalidDataException(String.Format("'{0}' is not in the correct format!", fileName));
             }
         }
 
@@ -103,11 +105,14 @@ namespace ConfigurationInjector
 
         private void PerformSingleInjection(XDocument targetConfiguration, string settingsKey, string toXPath)
         {
-            var setting = _settings.Descendants(settingsKey).Single();
-
-            IEnumerable xPathEvaluate = (IEnumerable)targetConfiguration.XPathEvaluate(toXPath);
-            xPathEvaluate.OfType<XElement>().ToList().ForEach(x => x.Value = setting.Value);
-            xPathEvaluate.OfType<XAttribute>().ToList().ForEach(x => x.Value = setting.Value);
+            var settings = _settings.Descendants(settingsKey);
+            if (settings.Any())
+            {
+                var setting = settings.First();
+                IEnumerable xPathEvaluate = (IEnumerable)targetConfiguration.XPathEvaluate(toXPath);
+                xPathEvaluate.OfType<XElement>().ToList().ForEach(x => x.Value = setting.Value);
+                xPathEvaluate.OfType<XAttribute>().ToList().ForEach(x => x.Value = setting.Value);    
+            }
         }
 
         private XDocument LoadConfigurationFile(string mapfileName)
@@ -119,7 +124,7 @@ namespace ConfigurationInjector
                 return XDocument.Load(configFileName);
             }
 
-            throw new FileNotFoundException(string.Format("Config file for mapping file with name '{0}' not found!"));
+            throw new FileNotFoundException(string.Format("Config file '{0}' not found!", configFileName));
         }
 
         private string GetConfigFileName(string mapfileName)

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <configSections>
+    <section name="loggingConfiguration" type="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.LoggingSettings, Microsoft.Practices.EnterpriseLibrary.Logging" />
+  </configSections>
+  <loggingConfiguration name="Logging Application Block" tracingEnabled="true" defaultCategory="" logWarningsWhenNoCategoriesMatch="true">
+    <listeners>
+      <add fileName="..\logs\_engine.log" rollSizeKB="2048" timeStampPattern="yyyy-MM-dd" rollFileExistsBehavior="Increment" rollInterval="None" formatter="System Log File Trace Formatter" header="" footer="" listenerDataType="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.RollingFlatFileTraceListenerData, Microsoft.Practices.EnterpriseLibrary.Logging" traceOutputOptions="None" type="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.RollingFlatFileTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging" name="System Log File Trace Listener" />
+      <add fileName="..\logs\_engine_errors.log" rollSizeKB="4096" timeStampPattern="yyyy-MM-dd" rollFileExistsBehavior="Increment" rollInterval="None" formatter="System Log File Trace Formatter" header="" footer="" listenerDataType="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.RollingFlatFileTraceListenerData, Microsoft.Practices.EnterpriseLibrary.Logging" traceOutputOptions="None" type="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.RollingFlatFileTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging" name="Server Error Log File Trace Listener" />
+      <add fileName="..\logs\_engine_status.log" rollSizeKB="4096" timeStampPattern="yyyy-MM-dd" rollFileExistsBehavior="Increment" rollInterval="None" formatter="Profiler Log File Trace Formatter" header="" footer="" listenerDataType="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.RollingFlatFileTraceListenerData, Microsoft.Practices.EnterpriseLibrary.Logging" traceOutputOptions="None" type="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.RollingFlatFileTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging" name="SystemProfiler Log File Trace Listener" />
+      <add fileName="..\logs\_engine_db_profile.log" rollSizeKB="4096" timeStampPattern="yyyy-MM-dd" rollFileExistsBehavior="Increment" rollInterval="None" formatter="Profiler Log File Trace Formatter" header="" footer="" listenerDataType="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.RollingFlatFileTraceListenerData, Microsoft.Practices.EnterpriseLibrary.Logging" traceOutputOptions="None" type="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.RollingFlatFileTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging" name="DbProfiler Log File Trace Listener" />
+      <add fileName="..\logs\_engine_msg_profile.log" rollSizeKB="4096" timeStampPattern="yyyy-MM-dd" rollFileExistsBehavior="Increment" rollInterval="None" formatter="Profiler Log File Trace Formatter" header="" footer="" listenerDataType="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.RollingFlatFileTraceListenerData, Microsoft.Practices.EnterpriseLibrary.Logging" traceOutputOptions="None" type="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.RollingFlatFileTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging" name="MessageProfiler Log File Trace Listener" />
+      <add fileName="..\logs\_engine_junk_ips.log" rollSizeKB="0" timeStampPattern="yyyy-MM-dd" rollFileExistsBehavior="Increment" rollInterval="None" formatter="BadIp Formatter" header="" footer="" listenerDataType="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.RollingFlatFileTraceListenerData, Microsoft.Practices.EnterpriseLibrary.Logging" traceOutputOptions="None" type="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.RollingFlatFileTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging" name="BadIp Log File Trace Listener" />
+      <add fileName="..\logs\_client_errors.log" rollSizeKB="2048" timeStampPattern="yyyy-MM-dd" rollFileExistsBehavior="Increment" rollInterval="None" formatter="Client Error Log File Trace Formatter" header="" footer="" listenerDataType="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.RollingFlatFileTraceListenerData, Microsoft.Practices.EnterpriseLibrary.Logging" traceOutputOptions="None" type="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.RollingFlatFileTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging" name="Client Error Log File Trace Listener" />
+      <add listenerDataType="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.CustomTraceListenerData, Microsoft.Practices.EnterpriseLibrary.Logging" traceOutputOptions="None" type="PebbleCode.Framework.Logging.DebugTraceListener, PC.Framework" name="Debug Trace Listener" initializeData="" formatter="Debug Trace Formatter" />
+    </listeners>
+    <formatters>
+      <add type="PebbleCode.Framework.Logging.FileFormatter, PC.Framework" name="Client Error Log File Trace Formatter" />
+      <add template="{message}" type="Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.TextFormatter, Microsoft.Practices.EnterpriseLibrary.Logging" name="Debug Trace Formatter" />
+      <add type="PebbleCode.Framework.Logging.FileFormatter, PC.Framework" name="System Log File Trace Formatter" />
+      <add type="PebbleCode.Framework.Logging.FileFormatter, PC.Framework" name="Profiler Log File Trace Formatter" />
+      <add template="{message}" type="Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.TextFormatter, Microsoft.Practices.EnterpriseLibrary.Logging" name="BadIp Formatter" />
+    </formatters>
+    <logFilters>
+      <add categoryFilterMode="AllowAllExceptDenied" type="Microsoft.Practices.EnterpriseLibrary.Logging.Filters.CategoryFilter, Microsoft.Practices.EnterpriseLibrary.Logging" name="Category Filter">
+        <categoryFilters>
+          <add name="MessageData" />
+        </categoryFilters>
+      </add>
+    </logFilters>
+    <categorySources>
+      <add switchValue="Information" name="Game">
+        <listeners>
+          <add name="System Log File Trace Listener" />
+        </listeners>
+      </add>
+      <add switchValue="All" name="MessageBadIp">
+        <listeners>
+          <add name="BadIp Log File Trace Listener" />
+          <add name="System Log File Trace Listener" />
+        </listeners>
+      </add>
+      <add switchValue="Information" name="MessageBroker">
+        <listeners>
+          <add name="System Log File Trace Listener" />
+        </listeners>
+      </add>
+      <add switchValue="Off" name="MessageData">
+        <listeners>
+          <add name="System Log File Trace Listener" />
+        </listeners>
+      </add>
+      <add switchValue="Information" name="Room">
+        <listeners>
+          <add name="System Log File Trace Listener" />
+        </listeners>
+      </add>
+      <add switchValue="Information" name="Scheduler">
+        <listeners>
+          <add name="System Log File Trace Listener" />
+        </listeners>
+      </add>
+      <add switchValue="All" name="ServerError">
+        <listeners>
+          <add name="System Log File Trace Listener" />
+          <add name="Server Error Log File Trace Listener" />
+        </listeners>
+      </add>
+      <add switchValue="All" name="GeneralError">
+        <listeners>
+          <add name="Server Error Log File Trace Listener" />
+          <add name="System Log File Trace Listener" />
+        </listeners>
+      </add>
+      <add switchValue="Information" name="DbProfiler">
+        <listeners>
+          <add name="DbProfiler Log File Trace Listener" />
+        </listeners>
+      </add>
+      <add switchValue="Information" name="MsgProfiler">
+        <listeners>
+          <add name="MessageProfiler Log File Trace Listener" />
+        </listeners>
+      </add>
+      <add switchValue="All" name="SysProfiler">
+        <listeners>
+          <add name="SystemProfiler Log File Trace Listener" />
+        </listeners>
+      </add>
+      <add switchValue="Off" name="Locking">
+        <listeners>
+          <add name="System Log File Trace Listener" />
+        </listeners>
+      </add>
+      <add switchValue="All" name="Task">
+        <listeners>
+          <add name="System Log File Trace Listener" />
+        </listeners>
+      </add>
+      <add switchValue="Information" name="Robot">
+        <listeners>
+          <add name="System Log File Trace Listener" />
+        </listeners>
+      </add>
+      <add switchValue="Information" name="JsonpClientProxy">
+        <listeners>
+          <add name="System Log File Trace Listener" />
+        </listeners>
+      </add>
+      <add switchValue="Information" name="HttpMessaging">
+        <listeners>
+          <add name="System Log File Trace Listener" />
+        </listeners>
+      </add>
+      <add switchValue="Information" name="SGPMediator">
+        <listeners>
+          <add name="System Log File Trace Listener" />
+        </listeners>
+      </add>
+    </categorySources>
+    <specialSources>
+      <allEvents switchValue="All" name="All Events" />
+      <notProcessed switchValue="All" name="Unprocessed Category" />
+      <errors switchValue="All" name="Logging Errors &amp; Warnings" />
+    </specialSources>
+  </loggingConfiguration>
+  <appSettings>
+    <add key="app.environment" value="Production" />
+    <add key="profileLogPeriod" value="600000" />
+    <add key="secondsBeforeClearingProfileStats" value="600" />
+    <add key="randomNumberGeneratorServiceUrl" value="http://31.222.164.54/RandomNumber.svc/{host}/{game}/generate$format=json" />
+    <add key="httpHostName" value="localhost" />
+    <!-- Database connection string -->
+    <add key="db.engine.connectionString" value="Database={0};Data Source={1};Port={2};User Id=freeBingo;Password=freeBingo;" />
+    <add key="db.engine.databaseName" value="fb_dev" />
+    <add key="db.engine.portNo" value="3400" />
+    <add key="db.engine.dbHost" value="localhost" />
+    <!-- Room port numbers -->
+    <add key="firstHttpPortNumber" value="2201" />
+    <add key="lastHttpPortNumber" value="2260" />
+    <!-- Stop scheduling games at 05:50:00 for 40 minutes, regardless of schedule -->
+    <add key="deadZoneStartTimeHours" value="4" />
+    <add key="deadZoneStartTimeMinutes" value="50" />
+    <add key="deadZonePeriodMinutes" value="16" />
+    <!-- Heartbeat settings -->
+    <add key="minSecondsBetweenClientHeartbeats" value="10" />
+    <add key="heartbeatGroupsPerRoom" value="10" />
+    <add key="heartbeatOffsetPerRoomSeconds" value="10" />
+  </appSettings>
+  <system.serviceModel>
+    <behaviors>
+      <endpointBehaviors>
+        <behavior name="webXmlOverHttpBehavior">
+          <endpointDiscovery enabled="true" />
+          <webHttp helpEnabled="true" defaultOutgoingResponseFormat="Xml" />
+        </behavior>
+        <behavior name="webJsonOverHttpBehavior">
+          <endpointDiscovery enabled="true" />
+          <webHttp helpEnabled="true" defaultOutgoingResponseFormat="Json" />
+        </behavior>
+        <behavior name="netNamedPipeBehaviour">
+          <gameRTNamedPipeBehavior integrationToken="Bingo" />
+        </behavior>
+      </endpointBehaviors>
+      <serviceBehaviors>
+        <behavior name="MyServiceTypeBehaviors">
+          <!-- Add the following element to your service behavior configuration. -->
+          <serviceMetadata httpGetEnabled="true" />
+          <serviceDebug includeExceptionDetailInFaults="true" />
+        </behavior>
+        <behavior name="returnFaults">
+          <serviceDebug includeExceptionDetailInFaults="true" />
+        </behavior>
+      </serviceBehaviors>
+    </behaviors>
+    <extensions>
+      <behaviorExtensions>
+        <add name="gameRTNamedPipeBehavior" type="BedeGaming.GameRT.Client.GameRTBinaryEndpointBehaviorExtensionElement, SGP.Contracts.GameRT.Client" />
+      </behaviorExtensions>
+    </extensions>
+    <bindings>
+      <webHttpBinding>
+        <!-- 
+        hostNameComparisonMode=Exact allows us to bind multiple http end points to the same port on different DNS/IP addresses 
+        e.g. http://dev01.sgp.pebblecode.com:18200/ and http://dev03.sgp.pebblecode.com:18200/  (notice same port number)
+        
+        This setting will require the DNS to be locally resolvable (think hosts file entry).  It can be removed for single node installations
+        -->
+        <!-- http -->
+        <binding name="webHttpBindingConfig" sendTimeout="05:00:00" hostNameComparisonMode="Exact"></binding>
+        <!-- http over SSL (https) -->
+        <binding name="webHttpsBindingConfig" sendTimeout="05:00:00" hostNameComparisonMode="Exact">
+          <security mode="Transport">
+            <transport clientCredentialType="None" />
+          </security>
+        </binding>
+      </webHttpBinding>
+      <netNamedPipeBinding>
+        <binding name="netNamedPipeBindingConfig" sendTimeout="05:00:00" />
+      </netNamedPipeBinding>
+    </bindings>
+    <client>
+      <!-- The bingo engine is a client of the Core GameRT api -->
+      <endpoint name="GameRT" contract="BedeGaming.GameRT.v1.IGameRT" address="net.pipe://localhost/Gaming/1/3" behaviorConfiguration="netNamedPipeBehaviour" binding="netNamedPipeBinding" bindingConfiguration="netNamedPipeBindingConfig" />
+    </client>
+  </system.serviceModel>
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0" />
+  </startup>
+  <system.web>
+    <membership defaultProvider="ClientAuthenticationMembershipProvider">
+      <providers>
+        <add name="ClientAuthenticationMembershipProvider" type="System.Web.ClientServices.Providers.ClientFormsAuthenticationMembershipProvider, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" serviceUri="" />
+      </providers>
+    </membership>
+    <roleManager defaultProvider="ClientRoleProvider" enabled="true">
+      <providers>
+        <add name="ClientRoleProvider" type="System.Web.ClientServices.Providers.ClientRoleProvider, System.Web.Extensions, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" serviceUri="" cacheTimeout="86400" />
+      </providers>
+    </roleManager>
+  </system.web>
+</configuration>

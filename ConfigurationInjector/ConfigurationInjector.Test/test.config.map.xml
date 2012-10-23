@@ -3,13 +3,13 @@
   <!--<map key="coreBadIpLogPath">
     <to>/configuration/loggingConfiguration/listeners/add/attribute[@formatter='BadIp Formatter']/@fileName</to>
   </map>-->
-  <map key="environmentName">
+  <map key="environment.name">
     <to>/configuration/appSettings/add[@key='app.environment']/@value</to>
   </map>
-  <map key="coreDbHost">
+  <map key="core.dbHost">
     <to>/configuration/appSettings/add[@key='app.coreDbHost']/@value</to>
   </map>
-  <map key="coreDbUser">
+  <map key="core.dbUser">
     <to>/configuration/appSettings/add[@key='app.coreDbUser']/@value</to>
   </map>
 </mappings>
