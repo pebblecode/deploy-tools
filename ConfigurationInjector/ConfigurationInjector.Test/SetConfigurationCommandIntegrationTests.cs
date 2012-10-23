@@ -198,7 +198,7 @@ namespace ConfigurationInjector.Test
 
         private string ReplaceLineFeeds(string input)
         {
-            return input.Replace("\n", string.Empty).Replace("\r\n", string.Empty);
+            return input.Replace("\n", string.Empty).Replace("\r\n", string.Empty).Replace("\r", string.Empty);
         }
 
         private string GetAssemblyPath()
