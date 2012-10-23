@@ -190,8 +190,8 @@ namespace ConfigurationInjector.Test
 
         private void AssertIfConfigurationIsAsExpected(string expectedfileName, string resultfileName)
         {
-            var expected = new StreamReader(GetAssemblyPath() + expectedfileName).ReadToEnd();
-            var result = new StreamReader(GetAssemblyPath() + resultfileName).ReadToEnd();
+            var expected = new StreamReader(GetAssemblyPath() + expectedfileName).ReadToEnd().Replace(" ", "").Replace(Environment.NewLine, "");
+            var result = new StreamReader(GetAssemblyPath() + resultfileName).ReadToEnd().Replace(" ", "").Replace(Environment.NewLine, "");
 
             Assert.AreEqual(expected, result);
         }
