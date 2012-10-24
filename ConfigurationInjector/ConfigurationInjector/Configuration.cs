@@ -4,7 +4,7 @@
     {
         public const string SettingsFile = "settings.xml";
 
-        public const string MappingFilesSuffix = ".config.map.xml";
+        public const string MappingFilesSuffix = ".map.xml";
 
         public const string ConfigurationFilesSuffix = ".config";
 
