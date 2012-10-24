@@ -1,0 +1,212 @@
+﻿<?xml version="1.0" ?>
+<mappings>
+
+  <!--Logging Listeners-->
+  <map key="core.sgpServiceLogListener.fileName">
+    <to>/configuration/loggingConfiguration/listeners/add[@name='SGP Service Log File Trace Listener']/@fileName</to>
+  </map>
+  <!--#####################################-->
+
+  <!--Logging Categories-->
+  <map key="core.dbProfiler.categorySource">
+    <to>/configuration/loggingConfiguration/categorySources/add[@name='DbProfiler']/@switchValue</to>
+  </map>
+  <map key="core.sysProfiler.categorySource">
+    <to>/configuration/loggingConfiguration/categorySources/add[@name='SysProfiler']/@switchValue</to>
+  </map>
+  <map key="core.rgsXT.categorySource">
+    <to>/configuration/loggingConfiguration/categorySources/add[@name='RgsXT']/@switchValue</to>
+  </map>
+  <!--#####################################-->
+
+  <!--Logging Special Events-->
+  <map key="core.allEventsLog.specialSource">
+    <to>/configuration/loggingConfiguration/specialSources/allEvents/@switchValue</to>
+  </map>
+  <map key="core.notProcessedLog.specialSource">
+    <to>/configuration/loggingConfiguration/specialSources/notProcessed/@switchValue</to>
+  </map>
+  <map key="core.errorsLog.specialSource">
+    <to>/configuration/loggingConfiguration/specialSources/errors/@switchValue</to>
+  </map>
+  <!--#####################################-->
+
+  <!--Endpoint behaviors-->
+  <map key="core.webXmlOverHttpEndpointBehavior.helpEnabled">
+    <to>/configuration/system.serviceModel/behaviors/endpointBehaviors/behavior[@name='webXmlOverHttpBehavior']/webHttp/@helpEnabled</to>
+  </map>
+  <map key="core.webJsonOverHttpEndpointBehaviour.helpEnabled">
+    <to>/configuration/system.serviceModel/behaviors/endpointBehaviors/behavior[@name='webJsonOverHttpBehavior']/webHttp/@helpEnabled</to>
+  </map>
+  <map key="core.netNamedPipeEndpointBehaviour.integrationToken">
+    <to>/configuration/system.serviceModel/behaviors/endpointBehaviors/behavior[@name='netNamedPipeBehaviour']/gameRTNamedPipeBehavior/@integrationToken</to>
+  </map>
+  <map key="core.gameRTJsonEndpointBehaviour.helpEnabled">
+    <to>/configuration/system.serviceModel/behaviors/endpointBehaviors/behavior[@name='gameRTJsonBehavior']/webHttp/@helpEnabled</to>
+  </map>
+  <!--#####################################-->
+
+  <!--Service behaviors-->
+  <map key="core.standardServiceBehaviour.includeExceptionDetailInFaults">
+    <to>/configuration/system.serviceModel/behaviors/serviceBehaviors/behavior[@name='standardServiceBehaviour']/serviceDebug/@includeExceptionDetailInFaults</to>
+  </map>
+  <map key="core.standardServiceBehaviour.httpHelpPageEnabled">
+    <to>/configuration/system.serviceModel/behaviors/serviceBehaviors/behavior[@name='standardServiceBehaviour']/serviceDebug/@httpHelpPageEnabled</to>
+  </map>
+  <!--#####################################-->
+
+  <!--Client Endpoints-->
+  <map key="environment.gameRT.clientEndpointAddress">
+    <to>/configuration/system.serviceModel/client/endpoint[@name='GameRT']/@address</to>
+  </map>
+  <!--#####################################-->
+
+  <!--Service Endpoints-->
+  <map key="environment.rgsXT.serviceEndpointAddress">
+    <to>/configuration/system.serviceModel/services/service/endpoint[@name='RgsXT']/@address</to>
+  </map>
+  <map key="environment.monitoringIGT.serviceEndpointAddress">
+    <to>/configuration/system.serviceModel/services/service[@name='SGP.Integrations.IGT.RgsXT_RestService']/endpoint[@name='Monitoring']/@address</to>
+  </map>
+  <map key="environment.banking.serviceEndpointAddress">
+    <to>/configuration/system.serviceModel/services/service/endpoint[@name='Banking']/@address</to>
+  </map>
+  <map key="environment.player.serviceEndpointAddress">
+    <to>/configuration/system.serviceModel/services/service/endpoint[@name='Player']/@address</to>
+  </map>
+  <map key="environment.admin.serviceEndpointAddress">
+    <to>/configuration/system.serviceModel/services/service/endpoint[@name='Admin']/@address</to>
+  </map>
+  <map key="environment.discovery.serviceEndpointAddress">
+    <to>/configuration/system.serviceModel/services/service/endpoint[@name='Discovery']/@address</to>
+  </map>
+  <map key="environment.gameRTJson.serviceEndpointAddress">
+    <to>/configuration/system.serviceModel/services/service/endpoint[@name='GameRT.json']/@address</to>
+  </map>
+  <map key="environment.gameRT.serviceEndpointAddress">
+    <to>/configuration/system.serviceModel/services/service/endpoint[@name='GameRT']/@address</to>
+  </map>
+  <map key="environment.monitoringWallet.serviceEndpointAddress">
+    <to>/configuration/system.serviceModel/services/service[@name='SGP.Wallet.Service.SGPWalletService']/endpoint[@name='Monitoring']/@address</to>
+  </map>
+  <!--#####################################-->
+
+  <!--App settings-->
+  <map key="environment.name">
+    <to>/configuration/appSettings/add[@key='app.environment']/@value</to>
+  </map>
+  <map key="core.version">
+    <to>/configuration/appSettings/add[@key='app.version']/@value</to>
+  </map>
+  <map key="core.igtServer">
+    <to>/configuration/appSettings/add[@key='IgtServer']/@value</to>
+  </map>
+  <map key="core.igtUserName">
+    <to>/configuration/appSettings/add[@key='IgtUserName']/@value</to>
+  </map>
+  <map key="core.igtPassword">
+    <to>/configuration/appSettings/add[@key='IgtPassword']/@value</to>
+  </map>
+  <map key="core.igtSkinCode">
+    <to>/configuration/appSettings/add[@key='IgtSkinCode']/@value</to>
+  </map>
+  <map key="core.igtNSCode">
+    <to>/configuration/appSettings/add[@key='IgtNSCode']/@value</to>
+  </map>
+  <map key="core.igtSiteCode">
+    <to>/configuration/appSettings/add[@key='SiteCode']/@value</to>
+  </map>
+  <map key="core.igtTaskInterval">
+    <to>/configuration/appSettings/add[@key='IgtTaskInterval']/@value</to>
+  </map>
+  <map key="core.igtProtocolType">
+    <to>/configuration/appSettings/add[@key='IgtProtocolType']/@value</to>
+  </map>
+  <map key="core.igtCountryCode">
+    <to>/configuration/appSettings/add[@key='IgtCountryCode']/@value</to>
+  </map>
+  <map key="core.gameLaunchUrl">
+    <to>/configuration/appSettings/add[@key='GameLaunchUrl']/@value</to>
+  </map>
+  <map key="core.gameEngine">
+    <to>/configuration/appSettings/add[@key='GameEngine']/@value</to>
+  </map>
+  <map key="core.dbConnectionString">
+    <to>/configuration/appSettings/add[@key='connectionString']/@value</to>
+  </map>
+  <map key="core.dbHost">
+    <to>/configuration/appSettings/add[@key='db.host']/@value</to>
+  </map>
+  <map key="core.dbName">
+    <to>/configuration/appSettings/add[@key='db.name']/@value</to>
+  </map>
+  <map key="core.dbPort">
+    <to>/configuration/appSettings/add[@key='db.port']/@value</to>
+  </map>
+  <map key="core.dbUser">
+    <to>/configuration/appSettings/add[@key='db.user']/@value</to>
+  </map>
+  <map key="core.dbPassword">
+    <to>/configuration/appSettings/add[@key='db.password']/@value</to>
+  </map>
+  <map key="core.dbCompression">
+    <to>/configuration/appSettings/add[@key='db.compression']/@value</to>
+  </map>
+  <map key="core.sqlMapAssembly">
+    <to>/configuration/appSettings/add[@key='SqlMap.Assembly']/@value</to>
+  </map>
+  <map key="core.sqlMapResource">
+    <to>/configuration/appSettings/add[@key='SqlMap.Resource']/@value</to>
+  </map>
+  <map key="core.loginExpiryMinutes">
+    <to>/configuration/appSettings/add[@key='loginExpiryMinutes']/@value</to>
+  </map>
+  <map key="core.igtUsername2">
+    <to>/configuration/appSettings/add[@key='igt.username']/@value</to>
+  </map>
+  <map key="core.igtPassword">
+    <to>/configuration/appSettings/add[@key='igt.password']/@value</to>
+  </map>
+  <map key="core.sgpToken">
+    <to>/configuration/appSettings/add[@key='sgp.token']/@value</to>
+  </map>
+  <map key="core.gamingMetadataStorageRootDirectory">
+    <to>/configuration/appSettings/add[@key='gamingMetadataStorageRootDirectory']/@value</to>
+  </map>
+  <map key="core.gamingMetadataStorageFileNameFormat">
+    <to>/configuration/appSettings/add[@key='gamingMetadataStorageFileNameFormat']/@value</to>
+  </map>
+  <map key="core.gamingMetadataStorageSubDirectoryFormat">
+    <to>/configuration/appSettings/add[@key='gamingMetadataStorageSubDirectoryFormat']/@value</to>
+  </map>
+  <!--#####################################-->
+
+  <!--Azure Configuration-->
+  <map key="core.azureNamespace">
+    <to>/configuration/azureConfiguration/settings/add[@key='azureNamespace']/@value</to>
+  </map>
+  <map key="core.azureIssuer">
+    <to>/configuration/azureConfiguration/settings/add[@key='issuer']/@value</to>
+  </map>
+  <map key="core.azureKey">
+    <to>/configuration/azureConfiguration/settings/add[@key='key']/@value</to>
+  </map>
+  <!--#####################################-->
+
+  <!--Monitoring Configuration-->
+  <map key="core.igtMonitorGroup.SGPWalletIpAddress">
+    <to>/configuration/monitoringConfiguration/serviceMonitorGroups/serviceMonitorGroup[@name='IGT']/serviceMonitors/serviceMonitorConfiguration[@name='SGP Wallet prod01a']/settings/add[@key='ipAddress']/@value</to>
+  </map>
+  <map key="core.igtMonitorGroup.SGPWalletPort">
+    <to>/configuration/monitoringConfiguration/serviceMonitorGroups/serviceMonitorGroup[@name='IGT']/serviceMonitors/serviceMonitorConfiguration[@name='SGP Wallet prod01a']/settings/add[@key='port']/@value</to>
+  </map>
+  <map key="core.sgpWalletMonitorGroup.IGTIpAddress">
+    <to>/configuration/monitoringConfiguration/serviceMonitorGroups/serviceMonitorGroup[@name='SGP.Wallet']/serviceMonitors/serviceMonitorConfiguration[@name='SGP IGT prod01a']/settings/add[@key='ipAddress']/@value</to>
+  </map>
+  <map key="core.sgpWalletMonitorGroup.IGTPort">
+    <to>/configuration/monitoringConfiguration/serviceMonitorGroups/serviceMonitorGroup[@name='SGP.Wallet']/serviceMonitors/serviceMonitorConfiguration[@name='SGP IGT prod01a']/settings/add[@key='port']/@value</to>
+  </map>
+  <!--#####################################-->
+
+ 
+</mappings>

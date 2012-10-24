@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+
+  <configSections>
+    <section name="loggingConfiguration" type="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.LoggingSettings, Microsoft.Practices.EnterpriseLibrary.Logging" requirePermission="true" />
+    <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+      <section name="FB.RestService.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    </sectionGroup>
+    <section name="ioCKernelConfiguration" type="PebbleCode.Framework.IoC.IoCKernelConfiguration, PC.Framework" />
+    <section name="monitoringConfiguration" type="SGP.Monitoring.MonitoringConfiguration, SGP.Monitoring" />
+    <section name="azureConfiguration" type="SGP.Messaging.Configuration.AzureConfiguration, SGP.Messaging" />
+  </configSections>
+
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0" />
+  </startup>
+
+  <appSettings>
+    <add key="IgtServer" value="rgs-cust02.lab.wagerworks.com" />
+    <add key="IgtUserName" value="ws-client" />
+    <add key="IgtPassword" value="password" />
+    <add key="IgtSkinCode" value="IP01" />
+    <add key="IgtNSCode" value="IPSL" />
+    <add key="SiteCode" value="WOOHOO" />
+    <add key="IgtTaskInterval" value="00:30:00" />
+    <add key="IgtProtocolType" value="https" />
+    <add key="IgtCountryCode" value="GB" />
+
+    <add key="GameLaunchUrl" value="{0}://{1}{2}?language={3}&amp;nscode={4}&amp;skincode={5}&amp;softwareid={6}&amp;countrycode={7}&amp;currenccode={8}&amp;uniqueid={9}&amp;securetoken={10}" />
+
+    <add key="GameEngine" value="IGT" />
+
+    <add key="connectionString" value="Data Source={0};Database={1};Port={2};User Id={3};Password={4};Use Compression={5};connect timeout=5;default command timeout=20" />
+    <add key="db.host" value="localhost" />
+    <add key="db.name" value="sgp" />
+    <add key="db.port" value="3400" />
+    <add key="db.user" value="gambler" />
+    <add key="db.password" value="g@mbl3r" />
+    <add key="db.compression" value="false" />
+
+    <add key="SqlMap.Assembly" value="SGP.Repository" />
+    <add key="SqlMap.Resource" value="SGP.Repository.Maps.Config.sqlMap.config" />
+
+    <add key="app.version" value="DEV_BUILD" />
+    <add key="app.environment" value="development" />
+
+    <add key="loginExpiryMinutes" value="10" />
+
+    <add key="igt.username" value="IPSLUSER" />
+    <add key="igt.password" value="password" />
+
+    <add key="sgp.token" value="IGT"/>
+    <add key="gamingMetadataStorageRootDirectory" value="c:\dev\metadata" />
+    <add key="gamingMetadataStorageSubDirectoryFormat" value="yyyy-MM-dd" />
+    <!-- Filename will include the gaming event id -->
+    <add key="gamingMetadataStorageFileNameFormat" value="{0}.log" />
+  </appSettings>
+
+
+  <azureConfiguration>
+    <settings>
+      <add key="azureNamespace" value="sgpbede"></add>
+      <add key="issuer" value="owner"></add>
+      <add key="key" value="pARZdOfnQMntMyvdtZcr2ZUc891wFA1JhSJAOVgdZqM="></add>
+    </settings>
+  </azureConfiguration>
+
+
+  <ioCKernelConfiguration>
+    <bindingAssemblys>
+      <assembly assembly="SGP.Wallet.Bonuses" />
+      <assembly assembly="SGP.Entities" />
+      <assembly assembly="SGP.Messaging" />
+      <assembly assembly="SGP.Wallet.Service" />
+    </bindingAssemblys>
+  </ioCKernelConfiguration>
+
+  <monitoringConfiguration>
+    <serviceMonitorGroups>
+      <serviceMonitorGroup name="IGT">
+        <serviceMonitors>
+          <serviceMonitorConfiguration name="SGP IGT prod01a" type="DummyServiceMonitor" />
+          <serviceMonitorConfiguration name="SGP Wallet prod01a" type="TcpPortServiceMonitor">
+            <settings>
+              <add key="ipAddress" value="localhost" />
+              <add key="port" value="18201" />
+              <add key="timeout" value="5" />
+            </settings>
+          </serviceMonitorConfiguration>
+          <serviceMonitorConfiguration name="SGP MySql prod01a" type="DatabaseServiceMonitor">
+            <settings>
+              <add key="timeout" value="5" />
+            </settings>
+          </serviceMonitorConfiguration>
+        </serviceMonitors>
+      </serviceMonitorGroup>
+
+      <serviceMonitorGroup name="SGP.Wallet">
+        <serviceMonitors>
+          <serviceMonitorConfiguration name="SGP IGT prod01a" type="TcpPortServiceMonitor">
+            <settings>
+              <add key="ipAddress" value="localhost" />
+              <add key="port" value="18200" />
+              <add key="timeout" value="5" />
+            </settings>
+          </serviceMonitorConfiguration>
+          <serviceMonitorConfiguration name="SGP Wallet prod01a" type="DummyServiceMonitor" />
+          <serviceMonitorConfiguration name="SGP MySql prod01a" type="DatabaseServiceMonitor">
+            <settings>
+              <add key="timeout" value="5" />
+            </settings>
+          </serviceMonitorConfiguration>
+        </serviceMonitors>
+      </serviceMonitorGroup>
+    </serviceMonitorGroups>
+  </monitoringConfiguration>
+
+  <loggingConfiguration name="Logging Application Block" tracingEnabled="true" defaultCategory="" logWarningsWhenNoCategoriesMatch="true">
+
+    <listeners>
+      <add name="SGP Service Log File Trace Listener"
+           type="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.RollingFlatFileTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging"
+           fileName="logs\sgp.log" rollSizeKB="2048" timeStampPattern="yyyy-MM-dd" rollFileExistsBehavior="Increment" rollInterval="None" formatter="System Log File Trace Formatter" header="" footer="" listenerDataType="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.RollingFlatFileTraceListenerData, Microsoft.Practices.EnterpriseLibrary.Logging" traceOutputOptions="None"
+           />
+      <add name="Debug Trace Listener"
+           type="PebbleCode.Framework.Logging.DebugTraceListener, PC.Framework"
+           listenerDataType="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.CustomTraceListenerData, Microsoft.Practices.EnterpriseLibrary.Logging"
+           traceOutputOptions="None" filter="All" initializeData="" formatter="Debug Trace Formatter"
+           />
+    </listeners>
+
+    <formatters>
+      <add name="Client Error Log File Trace Formatter"
+           type="PebbleCode.Framework.Logging.FileFormatter, PC.Framework"
+           />
+      <add name="Debug Trace Formatter"
+           type="Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.TextFormatter, Microsoft.Practices.EnterpriseLibrary.Logging"
+           template="{message}"
+           />
+      <add name="System Log File Trace Formatter"
+           type="PebbleCode.Framework.Logging.FileFormatter, PC.Framework"
+           />
+      <add name="Profiler Log File Trace Formatter"
+           type="PebbleCode.Framework.Logging.FileFormatter, PC.Framework"
+           />
+      <add name="BadIp Formatter"
+           type="Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.TextFormatter, Microsoft.Practices.EnterpriseLibrary.Logging"
+           template="{message}"
+           />
+    </formatters>
+
+    <logFilters>
+      <add categoryFilterMode="AllowAllExceptDenied" type="Microsoft.Practices.EnterpriseLibrary.Logging.Filters.CategoryFilter, Microsoft.Practices.EnterpriseLibrary.Logging" name="Category Filter">
+        <categoryFilters>
+          <add name="MessageData" />
+        </categoryFilters>
+      </add>
+    </logFilters>
+
+    <categorySources>
+      <add switchValue="Off" name="DbProfiler">
+      </add>
+      <add switchValue="Off" name="SysProfiler">
+      </add>
+      <add switchValue="All" name="RgsXT">
+        <listeners>
+          <add name="SGP Service Log File Trace Listener" />
+        </listeners>
+      </add>
+    </categorySources>
+
+    <specialSources>
+      <allEvents switchValue="All" name="All Events" >
+        <listeners>
+          <add name="SGP Service Log File Trace Listener" />
+        </listeners>
+      </allEvents>
+      <notProcessed switchValue="All" name="Unprocessed Category">
+        <listeners>
+          <add name="SGP Service Log File Trace Listener" />
+        </listeners>
+      </notProcessed>
+      <errors switchValue="All" name="Logging Errors &amp; Warnings">
+        <listeners>
+          <add name="SGP Service Log File Trace Listener" />
+        </listeners>
+      </errors>
+    </specialSources>
+
+  </loggingConfiguration>
+
+  <system.web>
+    <compilation debug="true" targetFramework="4.0" />
+  </system.web>
+
+  <system.serviceModel>
+    <bindings>
+      <webHttpBinding>
+        <!-- 
+        hostNameComparisonMode=Exact allows us to bind multiple http end points to the same port on different DNS/IP addresses 
+        e.g. http://dev01.sgp.pebblecode.com:18200/ and http://dev03.sgp.pebblecode.com:18200/  (notice same port number)
+        -->
+
+        <!-- http -->
+        <binding name="webHttpBindingConfig" sendTimeout="05:00:00">
+        </binding>
+
+        <!-- http over SSL (https) -->
+        <binding name="webHttpsBindingConfig" sendTimeout="05:00:00">
+          <security mode="Transport">
+            <transport clientCredentialType="None"/>
+          </security>
+        </binding>
+
+      </webHttpBinding>
+      <netNamedPipeBinding>
+        <binding name="netNamedPipeBindingConfig" sendTimeout="05:00:00" maxReceivedMessageSize="2097152"
+                     maxBufferSize="2097152"
+                     maxBufferPoolSize="2097152" />
+      </netNamedPipeBinding>
+    </bindings>
+    <extensions>
+      <behaviorExtensions>
+        <add name="gameRTJsonBehavior" type="SGP.ServiceModel.GameRTServerEndpointBehaviorExtensionElement, SGP.ServiceModel"/>
+        <add name="gameRTNamedPipeBehavior" type="SGP.ServiceModel.GameRTServerBinaryEndpointBehaviorExtensionElement, SGP.ServiceModel"/>
+      </behaviorExtensions>
+    </extensions>
+    <behaviors>
+      <endpointBehaviors>
+        <behavior name="gameRTJsonBehavior">
+          <dataContractSerializer maxItemsInObjectGraph="165536" />
+          <endpointDiscovery enabled="true" />
+          <webHttp helpEnabled="true" defaultOutgoingResponseFormat="Json" />
+          <gameRTJsonBehavior />
+        </behavior>
+        <behavior name="webXmlOverHttpBehavior">
+          <endpointDiscovery enabled="true" />
+          <webHttp helpEnabled="true" defaultOutgoingResponseFormat="Xml" />
+        </behavior>
+        <behavior name="webJsonOverHttpBehavior">
+          <dataContractSerializer maxItemsInObjectGraph="165536" />
+          <endpointDiscovery enabled="true" />
+          <webHttp helpEnabled="true" defaultOutgoingResponseFormat="Json" />
+        </behavior>
+        <behavior name="netNamedPipeBehaviour">
+          <dataContractSerializer maxItemsInObjectGraph="9999999" />
+          <gameRTNamedPipeBehavior integrationToken="IGT"/>
+        </behavior>
+      </endpointBehaviors>
+      <serviceBehaviors>
+        <behavior name="standardServiceBehaviour">
+          <serviceDebug includeExceptionDetailInFaults="true" httpHelpPageEnabled="true" />
+        </behavior>
+      </serviceBehaviors>
+    </behaviors>
+    <client>
+      <!-- Wallet Service Endpoints (for clients) -->
+      <endpoint name="GameRT"  contract="BedeGaming.GameRT.v1.IGameRT" address="net.pipe://localhost/Gaming/1/3"
+                behaviorConfiguration="netNamedPipeBehaviour" binding="netNamedPipeBinding" bindingConfiguration="netNamedPipeBindingConfig" />
+    </client>
+    <services>
+      <!-- IGT Service Endpoints -->
+      <service name="SGP.Integrations.IGT.RgsXT_RestService" behaviorConfiguration="standardServiceBehaviour">
+        <endpoint name="RgsXT" contract="SGP.Integrations.IGT.IRgsXT" address="http://localhost:18200/"
+                  behaviorConfiguration="webXmlOverHttpBehavior" binding="webHttpBinding" bindingConfiguration="webHttpBindingConfig" />
+        <!-- HEALTH MONITORING ENDPOINT -->
+        <endpoint name="Monitoring" contract="BedeGaming.Wallet.v1.IMonitoringContract" address="http://localhost:18200/HealthMonitor"
+                  behaviorConfiguration="webXmlOverHttpBehavior" binding="webHttpBinding" bindingConfiguration="webHttpBindingConfig" />
+      </service>
+      <!-- Wallet Service Endpoints -->
+      <service name="SGP.Wallet.Service.SGPWalletService" behaviorConfiguration="standardServiceBehaviour">
+        <!-- HTTP JSON ENDPOINTS -->
+        <endpoint name="Banking" contract="BedeGaming.Wallet.v1.IBankingContract" address="http://localhost:18201/Banking"
+                  behaviorConfiguration="webJsonOverHttpBehavior" binding="webHttpBinding" bindingConfiguration="webHttpBindingConfig" />
+        <endpoint name="Player" contract="BedeGaming.Wallet.v1.IPlayerContract" address="http://localhost:18201/Player"
+                  behaviorConfiguration="webJsonOverHttpBehavior" binding="webHttpBinding" bindingConfiguration="webHttpBindingConfig" />
+        <endpoint name="Admin" contract="BedeGaming.Wallet.v1.IAdminContract" address="http://localhost:18201/Admin"
+                  behaviorConfiguration="webJsonOverHttpBehavior" binding="webHttpBinding" bindingConfiguration="webHttpBindingConfig" />
+        <endpoint name="Discovery" contract="BedeGaming.Wallet.v1.IDiscoveryContract" address="http://localhost:18201/Discovery"
+                  behaviorConfiguration="webJsonOverHttpBehavior" binding="webHttpBinding" bindingConfiguration="webHttpBindingConfig" />
+        <endpoint name="GameRT.json" contract="BedeGaming.GameRT.v1.IGameRT" address="http://localhost:18201/Gaming/1/3"
+                  behaviorConfiguration="gameRTJsonBehavior" binding="webHttpBinding" bindingConfiguration="webHttpBindingConfig" />
+        <!-- NET NAMED PIPE BINARY ENDPOINTS -->
+        <endpoint name="GameRT" contract="BedeGaming.GameRT.v1.IGameRT" address="net.pipe://localhost/Gaming/1/3"
+                  behaviorConfiguration="netNamedPipeBehaviour" binding="netNamedPipeBinding" bindingConfiguration="netNamedPipeBindingConfig" />
+        <!-- HEALTH MONITORING ENDPOINT -->
+        <endpoint name="Monitoring" contract="BedeGaming.Wallet.v1.IMonitoringContract" address="http://localhost:18201/HealthMonitor"
+                  behaviorConfiguration="webXmlOverHttpBehavior" binding="webHttpBinding" bindingConfiguration="webHttpBindingConfig" />
+      </service>
+    </services>
+    <diagnostics>
+      <messageLogging
+           logEntireMessage="true"
+           logMalformedMessages="true"
+           logMessagesAtServiceLevel="true"
+           logMessagesAtTransportLevel="true"
+           maxMessagesToLog="3000"
+           maxSizeOfMessageToLog="2000"/>
+    </diagnostics>
+  </system.serviceModel>
+
+
+  <system.webServer>
+    <modules runAllManagedModulesForAllRequests="false"/>
+  </system.webServer>
+
+
+  <system.diagnostics>
+    <sources>
+      <source name="System.ServiceModel" switchValue="Warning,ActivityTracing"
+        propagateActivity="true">
+        <listeners>
+          <add type="System.Diagnostics.DefaultTraceListener" name="Default">
+            <filter type="" />
+          </add>
+          <add name="ServiceModelTraceListener">
+            <filter type="" />
+          </add>
+        </listeners>
+      </source>
+      <source name="System.ServiceModel.MessageLogging" switchValue="Information,ActivityTracing">
+        <listeners>
+          <add type="System.Diagnostics.DefaultTraceListener" name="Default">
+            <filter type="" />
+          </add>
+          <add name="ServiceModelMessageLoggingListener">
+            <filter type="" />
+          </add>
+        </listeners>
+      </source>
+    </sources>
+    <sharedListeners>
+      <add initializeData=".\logs\web_messages.svclog"
+        type="System.Diagnostics.XmlWriterTraceListener, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+        name="ServiceModelMessageLoggingListener" traceOutputOptions="Timestamp">
+        <filter type="" />
+      </add>
+      <add initializeData=".\logs\web_tracelog.svclog"
+        type="System.Diagnostics.XmlWriterTraceListener, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+        name="ServiceModelTraceListener" traceOutputOptions="Timestamp">
+        <filter type="" />
+      </add>
+    </sharedListeners>
+    <trace autoflush="true" />
+  </system.diagnostics>
+
+</configuration>
