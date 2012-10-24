@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" ?>
-<maps>
-  <map key="bingo.heartbeatGroupsPerRoom">
-    <to>/configuration/appSettings/add[@key='heartbeatGroupsPerRoom']/@value</to>
-  </map>
-  <map key="bingo.heartbeatOffsetPerRoomSeconds">
-    <to>/configuration/appSettings/add[@key='heartbeatOffsetPerRoomSeconds']/@value</to>
-  </map>
-</maps>

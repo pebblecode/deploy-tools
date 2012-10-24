@@ -127,7 +127,7 @@
   <!--#####################################-->
 
   <!--Endpoints-->
-  <map key="environment.GameRT.EndpointAddress">
+  <map key="environment.gameRT.clientEndpointAddress">
     <to>/configuration/system.serviceModel/client/endpoint[@name='GameRT']/@address</to>
   </map>
   <!--#####################################-->
