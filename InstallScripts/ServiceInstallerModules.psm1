@@ -24,7 +24,7 @@ Function InstallService
     echo ('load config file from' +$configFile)
     $xml = [xml](Get-Content $configFile)
     $xpath = "/envConfig/environment.name"
-    $environmentName = $xml.SelectSingleNode($xpath).value
+    $environmentName = $xml.SelectSingleNode($xpath)."#text"
     echo ("environment loaded as " + $environmentName)
         
     $serviceName = $baseServiceName + ' ' + $environmentName
@@ -90,7 +90,7 @@ Function UnInstallService
 
     $xml = [xml](Get-Content $environmentalSettings)
     $xpath = "/envConfig/environment.name"
-    $environmentName = $xml.SelectSingleNode($xpath).value
+    $environmentName = $xml.SelectSingleNode($xpath)."#text"
     echo ("environment loaded as " + $environmentName)
 
     $xml = [xml](Get-Content $configFile)
