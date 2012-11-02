@@ -51,7 +51,15 @@ namespace ConfigurationInjector
 
             foreach (var fileName in fileNames)
             {
-                ProcessMapFile(fileName);
+                try
+                {
+                    ProcessMapFile(fileName);
+                }
+                catch (Exception ex)
+                {
+                    this.WriteError(new ErrorRecord(ex, "1", ErrorCategory.InvalidData, this));
+                }
+            
             }
         }
 
@@ -65,7 +73,7 @@ namespace ConfigurationInjector
 
             // Get config document
             XDocument configDoc = LoadConfigurationFile(fileName);
-            
+
             // Inject the configuration from settings.xml
             InjectConfiguration(mapDoc, configDoc);
 
@@ -124,7 +132,7 @@ namespace ConfigurationInjector
                 return XDocument.Load(configFileName);
             }
 
-            throw new FileNotFoundException(string.Format("Config file '{0}' not found!", configFileName));
+            throw new FileNotFoundException(string.Format("Config file '{0}' not found!", configFileName));            
         }
 
         private string GetConfigFileName(string mapfileName)
