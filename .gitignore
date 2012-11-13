@@ -34,3 +34,4 @@ solution/AssemblyVersion.fs
 [Ll]ogs/
 engine/Solution/packages/*
 src/packages/*
+*.ncrunch*

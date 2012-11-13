@@ -22,6 +22,9 @@ namespace ConfigurationInjector.Test
         [DeploymentItem("SGPCore.config")]
         [DeploymentItem("SGPCore.config.expected")]
         [DeploymentItem("SGPCore.map.xml")]
+        [DeploymentItem("GameLaunch.config")]
+        [DeploymentItem("GameLaunch.config.expected")]
+        [DeploymentItem("GameLaunch.map.xml")]
         [DeploymentItem("System.Management.dll")]
         [DeploymentItem("System.Management.Automation.dll")]
         [DeploymentItem("ConfigurationInjector.dll")]
@@ -50,6 +53,7 @@ namespace ConfigurationInjector.Test
             // Assert
             AssertIfConfigurationIsAsExpected("SGPCore.config.expected", "SGPCore.config");
             AssertIfConfigurationIsAsExpected("Bingo.config.expected", "Bingo.config");
+            AssertIfConfigurationIsAsExpected("GameLaunch.config.expected", "GameLaunch.config");
         }
 
         private void AssertIfConfigurationIsAsExpected(string expectedfileName, string resultfileName)

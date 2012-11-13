@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<mappings>
+  <map key="gameLaunch.playerEndPoint.address">
+    <to>/configuration/system.serviceModel/client/endpoint[@name='Player']/@address</to>
+  </map>
+</mappings>

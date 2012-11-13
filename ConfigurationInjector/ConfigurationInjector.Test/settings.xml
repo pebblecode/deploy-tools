@@ -127,5 +127,6 @@
   <core.igtMonitorGroup.SGPWalletPort>18201</core.igtMonitorGroup.SGPWalletPort>
   <core.sgpWalletMonitorGroup.IGTIpAddress>localhost</core.sgpWalletMonitorGroup.IGTIpAddress>
   <core.sgpWalletMonitorGroup.IGTPort>18200</core.sgpWalletMonitorGroup.IGTPort>
-  
+
+  <gameLaunch.playerEndPoint.address>http://integrationtest:18261/Player</gameLaunch.playerEndPoint.address>
 </envConfig>
