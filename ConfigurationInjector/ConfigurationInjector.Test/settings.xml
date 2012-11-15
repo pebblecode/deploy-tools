@@ -129,4 +129,8 @@
   <core.sgpWalletMonitorGroup.IGTPort>18200</core.sgpWalletMonitorGroup.IGTPort>
 
   <gameLaunch.playerEndPoint.address>http://integrationtest:18261/Player</gameLaunch.playerEndPoint.address>
+  <gameLaunch.evolution.host>cit1-bedegaming.evolutiongaming.com</gameLaunch.evolution.host>
+  <gameLaunch.evolution.uaId>0nhhhtlcujmhrkrvxoqqv5yfl6o25d36</gameLaunch.evolution.uaId>
+  <gameLaunch.evolution.uaIdPass>test123</gameLaunch.evolution.uaIdPass>
+  <gameLaunch.loggingConfiguration.errorLogFileTraceListener>logs\_errors_server.log</gameLaunch.loggingConfiguration.errorLogFileTraceListener>
 </envConfig>

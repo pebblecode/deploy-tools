@@ -3,4 +3,17 @@
   <map key="gameLaunch.playerEndPoint.address">
     <to>/configuration/system.serviceModel/client/endpoint[@name='Player']/@address</to>
   </map>
+  <map key="gameLaunch.evolution.host">
+    <to>/configuration/appSettings/add[@key='evolution.host']/@value</to>
+  </map>
+  <map key="gameLaunch.evolution.uaId">
+    <to>/configuration/appSettings/add[@key='evolution.uaId']/@value</to>
+  </map>
+  <map key="gameLaunch.evolution.uaIdPass">
+    <to>/configuration/appSettings/add[@key='evolution.uaIdPass']/@value</to>
+  </map>
+  <map key="gameLaunch.loggingConfiguration.errorLogFileTraceListener">
+    <to>/configuration/loggingConfiguration/listeners/add[@name='Server Error Log File Trace Listener']/@fileName</to>
+  </map>
 </mappings>
+
