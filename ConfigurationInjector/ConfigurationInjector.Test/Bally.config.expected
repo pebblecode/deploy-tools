@@ -1,0 +1,242 @@
+﻿<?xml version="1.0"?>
+<configuration>
+
+  <configSections>
+    <section name="loggingConfiguration" type="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.LoggingSettings, Microsoft.Practices.EnterpriseLibrary.Logging" requirePermission="true" />
+    <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+      <section name="FB.RestService.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+    </sectionGroup>
+    <section name="ioCKernelConfiguration" type="PebbleCode.Framework.IoC.IoCKernelConfiguration, PC.Framework" />
+    <section name="monitoringConfiguration" type="SGP.Monitoring.MonitoringConfiguration, SGP.Monitoring" />
+  </configSections>
+
+  <startup>
+    <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0"/>
+  </startup>
+
+  <appSettings>
+    <add key="app.environment" value="development" />
+    <add key="bally.operator" value="Casino 6601" />
+    <add key="bally.version" value="1.0.0" />
+    <add key="bally.status" value="Alive" />
+    <!--  Alive / Down -->
+  </appSettings>
+
+  <ioCKernelConfiguration>
+    <bindingAssemblys>
+    </bindingAssemblys>
+  </ioCKernelConfiguration>
+
+  <loggingConfiguration name="Logging Application Block" tracingEnabled="true" defaultCategory="" logWarningsWhenNoCategoriesMatch="true">
+
+    <listeners>
+      <add name="SGP Service Log File Trace Listener"
+           type="Microsoft.Practices.EnterpriseLibrary.Logging.TraceListeners.RollingFlatFileTraceListener, Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+           fileName="logs\sgp.log" rollSizeKB="2048" timeStampPattern="yyyy-MM-dd" rollFileExistsBehavior="Increment" rollInterval="None" formatter="System Log File Trace Formatter" header="" footer="" listenerDataType="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.RollingFlatFileTraceListenerData, Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" traceOutputOptions="None"
+           />
+      <add name="Debug Trace Listener"
+           type="PebbleCode.Framework.Logging.DebugTraceListener, PC.Framework"
+           listenerDataType="Microsoft.Practices.EnterpriseLibrary.Logging.Configuration.CustomTraceListenerData, Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+           traceOutputOptions="None" filter="All" initializeData="" formatter="Debug Trace Formatter"
+           />
+    </listeners>
+
+    <formatters>
+      <add name="Client Error Log File Trace Formatter"
+           type="PebbleCode.Framework.Logging.FileFormatter, PC.Framework"
+           />
+      <add name="Debug Trace Formatter"
+           type="Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.TextFormatter, Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+           template="{message}"
+           />
+      <add name="System Log File Trace Formatter"
+           type="PebbleCode.Framework.Logging.FileFormatter, PC.Framework"
+           />
+      <add name="Profiler Log File Trace Formatter"
+           type="PebbleCode.Framework.Logging.FileFormatter, PC.Framework"
+           />
+      <add name="BadIp Formatter"
+           type="Microsoft.Practices.EnterpriseLibrary.Logging.Formatters.TextFormatter, Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35"
+           template="{message}"
+           />
+    </formatters>
+
+    <logFilters>
+      <add categoryFilterMode="AllowAllExceptDenied" type="Microsoft.Practices.EnterpriseLibrary.Logging.Filters.CategoryFilter, Microsoft.Practices.EnterpriseLibrary.Logging, Version=5.0.414.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" name="Category Filter">
+        <categoryFilters>
+          <add name="MessageData" />
+        </categoryFilters>
+      </add>
+    </logFilters>
+
+    <categorySources>
+      <add switchValue="Off" name="DbProfiler">
+      </add>
+      <add switchValue="Off" name="SysProfiler">
+      </add>
+      <add switchValue="All" name="RgsXT">
+        <listeners>
+          <add name="SGP Service Log File Trace Listener" />
+        </listeners>
+      </add>
+    </categorySources>
+
+    <specialSources>
+      <allEvents switchValue="All" name="All Events" >
+        <listeners>
+          <add name="SGP Service Log File Trace Listener" />
+        </listeners>
+      </allEvents>
+      <notProcessed switchValue="All" name="Unprocessed Category">
+        <listeners>
+          <add name="SGP Service Log File Trace Listener" />
+        </listeners>
+      </notProcessed>
+      <errors switchValue="All" name="Logging Errors &amp; Warnings">
+        <listeners>
+          <add name="SGP Service Log File Trace Listener" />
+        </listeners>
+      </errors>
+    </specialSources>
+
+  </loggingConfiguration>
+
+  <system.web>
+    <compilation debug="true" targetFramework="4.0" />
+  </system.web>
+
+  <system.serviceModel>
+    <bindings>
+      <webHttpBinding>
+        <!-- 
+        hostNameComparisonMode=Exact allows us to bind multiple http end points to the same port on different DNS/IP addresses 
+        e.g. http://dev01.sgp.pebblecode.com:18200/ and http://dev03.sgp.pebblecode.com:18200/  (notice same port number)
+        -->
+
+        <!-- http -->
+        <binding name="webHttpBindingConfig" sendTimeout="05:00:00">
+        </binding>
+
+        <!-- http over SSL (https) -->
+        <binding name="webHttpsBindingConfig" sendTimeout="05:00:00">
+          <security mode="Transport">
+            <transport clientCredentialType="None"/>
+          </security>
+        </binding>
+
+      </webHttpBinding>
+      <netNamedPipeBinding>
+        <binding name="netNamedPipeBindingConfig" sendTimeout="05:00:00" />
+      </netNamedPipeBinding>
+    </bindings>
+    <extensions>
+      <behaviorExtensions>
+        <add name="gameRTJsonBehavior" type="BedeGaming.GameRT.Client.GameRTEndpointBehaviorExtensionElement, SGP.Contracts.GameRT.Client"/>
+        <add name="gameRTNamedPipeBehavior" type="BedeGaming.GameRT.Client.GameRTBinaryEndpointBehaviorExtensionElement, SGP.Contracts.GameRT.Client"/>
+      </behaviorExtensions>
+    </extensions>
+    <behaviors>
+      <endpointBehaviors>
+        <behavior name="gamingContractJsonBehavior">
+          <dataContractSerializer maxItemsInObjectGraph="165536" />
+          <endpointDiscovery enabled="true" />
+          <webHttp helpEnabled="true" defaultOutgoingResponseFormat="Json" />
+          <gameRTJsonBehavior />
+        </behavior>
+        <behavior name="webXmlOverHttpBehavior">
+          <endpointDiscovery enabled="true" />
+          <webHttp helpEnabled="true" defaultOutgoingResponseFormat="Xml" />
+        </behavior>
+        <behavior name="webJsonOverHttpBehavior">
+          <dataContractSerializer maxItemsInObjectGraph="165536" />
+          <endpointDiscovery enabled="true" />
+          <webHttp helpEnabled="true" defaultOutgoingResponseFormat="Json" />
+        </behavior>
+        <behavior name="netNamedPipeBehaviour">
+          <gameRTNamedPipeBehavior integrationToken="IGT"/>
+        </behavior>
+      </endpointBehaviors>
+      <serviceBehaviors>
+        <behavior name="standardServiceBehaviour">
+          <serviceDebug includeExceptionDetailInFaults="true" httpHelpPageEnabled="true" />
+        </behavior>
+      </serviceBehaviors>
+    </behaviors>
+    <client>
+      <!-- Wallet Service Endpoints (for clients) -->
+      <endpoint name="Gaming"  contract="BedeGaming.GameRT.v1.IGameRT" address="net.pipe://localhost/Gaming/1/3"
+                behaviorConfiguration="netNamedPipeBehaviour" binding="netNamedPipeBinding" bindingConfiguration="netNamedPipeBindingConfig" />
+    </client>
+    <services>
+      <service name="SGP.Integrations.Bally.Service.SGPIntegrationsBallyService" behaviorConfiguration="standardServiceBehaviour">
+
+        <!-- Bally - HTTP JSON ENDPOINTS -->
+        <endpoint name="Player" contract="SGP.Integrations.Bally.Interface.ServiceContracts.IPlayerContract" address="http://localhost:18200/SGPBallyIntegration/rest/gp/players"
+                  behaviorConfiguration="webJsonOverHttpBehavior" binding="webHttpBinding" bindingConfiguration="webHttpBindingConfig" >
+        </endpoint>
+
+        <endpoint name="System" contract="SGP.Integrations.Bally.Interface.ServiceContracts.ISystemContract" address="http://localhost:18200/SGPBallyIntegration/rest/gp/system"
+              behaviorConfiguration="webJsonOverHttpBehavior" binding="webHttpBinding" bindingConfiguration="webHttpBindingConfig" />
+
+        <endpoint name="Gaming" contract="SGP.Integrations.Bally.Interface.ServiceContracts.IGamingContract" address="http://localhost:18200/SGPBallyIntegration/rest/gp/gamecycles"
+                  behaviorConfiguration="webJsonOverHttpBehavior" binding="webHttpBinding" bindingConfiguration="webHttpBindingConfig" />
+
+      </service>
+    </services>
+    <diagnostics>
+      <messageLogging
+           logEntireMessage="true"
+           logMalformedMessages="true"
+           logMessagesAtServiceLevel="true"
+           logMessagesAtTransportLevel="true"
+           maxMessagesToLog="3000"
+           maxSizeOfMessageToLog="2000"/>
+    </diagnostics>
+  </system.serviceModel>
+
+
+  <system.webServer>
+    <modules runAllManagedModulesForAllRequests="false"/>
+  </system.webServer>
+
+
+  <system.diagnostics>
+    <sources>
+      <source name="System.ServiceModel" switchValue="Warning,ActivityTracing"
+        propagateActivity="true">
+        <listeners>
+          <add type="System.Diagnostics.DefaultTraceListener" name="Default">
+            <filter type="" />
+          </add>
+          <add name="ServiceModelTraceListener">
+            <filter type="" />
+          </add>
+        </listeners>
+      </source>
+      <source name="System.ServiceModel.MessageLogging" switchValue="Information,ActivityTracing">
+        <listeners>
+          <add type="System.Diagnostics.DefaultTraceListener" name="Default">
+            <filter type="" />
+          </add>
+          <add name="ServiceModelMessageLoggingListener">
+            <filter type="" />
+          </add>
+        </listeners>
+      </source>
+    </sources>
+    <sharedListeners>
+      <add initializeData=".\logs\web_messages.svclog"
+        type="System.Diagnostics.XmlWriterTraceListener, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+        name="ServiceModelMessageLoggingListener" traceOutputOptions="Timestamp">
+        <filter type="" />
+      </add>
+      <add initializeData=".\logs\web_tracelog.svclog"
+        type="System.Diagnostics.XmlWriterTraceListener, System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+        name="ServiceModelTraceListener" traceOutputOptions="Timestamp">
+        <filter type="" />
+      </add>
+    </sharedListeners>
+    <trace autoflush="true" />
+  </system.diagnostics>
+
+</configuration>

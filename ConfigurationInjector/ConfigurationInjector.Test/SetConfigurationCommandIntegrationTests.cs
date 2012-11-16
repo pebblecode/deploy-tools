@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Management.Automation.Runspaces;
-using System.Xml;
 using System.Xml.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -19,6 +18,9 @@ namespace ConfigurationInjector.Test
         [DeploymentItem("Bingo.config")]
         [DeploymentItem("Bingo.map.xml")]
         [DeploymentItem("Bingo.config.expected")]
+        [DeploymentItem("Bally.config")]
+        [DeploymentItem("Bally.map.xml")]
+        [DeploymentItem("Bally.config.expected")]
         [DeploymentItem("SGPCore.config")]
         [DeploymentItem("SGPCore.config.expected")]
         [DeploymentItem("SGPCore.map.xml")]
@@ -50,6 +52,7 @@ namespace ConfigurationInjector.Test
             // Assert
             AssertIfConfigurationIsAsExpected("SGPCore.config.expected", "SGPCore.config");
             AssertIfConfigurationIsAsExpected("Bingo.config.expected", "Bingo.config");
+            AssertIfConfigurationIsAsExpected("Bally.config.expected", "Bally.config");
         }
 
         private void AssertIfConfigurationIsAsExpected(string expectedfileName, string resultfileName)

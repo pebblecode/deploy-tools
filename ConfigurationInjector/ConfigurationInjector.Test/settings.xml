@@ -13,7 +13,10 @@
   <environment.gameRTJson.serviceEndpointAddress>http://localhost:18201/Gaming/1/3</environment.gameRTJson.serviceEndpointAddress>
   <environment.gameRT.serviceEndpointAddress>net.pipe://localhost/Gaming/1/3</environment.gameRT.serviceEndpointAddress>
   <environment.monitoringWallet.serviceEndpointAddress>http://localhost:18201/HealthMonitor</environment.monitoringWallet.serviceEndpointAddress>
-
+  <environment.ballyPlayer.serviceEndpointAddress>http://localhost:18200/SGPBallyIntegration/rest/gp/players</environment.ballyPlayer.serviceEndpointAddress>
+  <environment.ballySystem.serviceEndpointAddress>http://localhost:18200/SGPBallyIntegration/rest/gp/system</environment.ballySystem.serviceEndpointAddress>
+  <environment.ballyGaming.serviceEndpointAddress>http://localhost:18200/SGPBallyIntegration/rest/gp/gamecycles</environment.ballyGaming.serviceEndpointAddress>
+  
   <bingo.dbHost>localhost</bingo.dbHost>
   <bingo.dbConnectionstring>Database={0};Data Source={1};Port={2};User Id=freeBingo;Password=freeBingo;</bingo.dbConnectionstring>
   <bingo.dbName>fb_dev</bingo.dbName>
@@ -95,7 +98,7 @@
   <core.sqlMapResource>SGP.Repository.Maps.Config.sqlMap.config</core.sqlMapResource>
   <core.loginExpiryMinutes>10</core.loginExpiryMinutes>
   <core.igtUsername2>IPSLUSER</core.igtUsername2>
-  <core.igtPassword>password</core.igtPassword>
+  <core.igtPassword2>password</core.igtPassword2>
   <core.sgpToken>IGT</core.sgpToken>
   <core.gamingMetadataStorageRootDirectory>c:\dev\metadata</core.gamingMetadataStorageRootDirectory>
   <core.gamingMetadataStorageFileNameFormat>{0}.log</core.gamingMetadataStorageFileNameFormat>
@@ -127,5 +130,27 @@
   <core.igtMonitorGroup.SGPWalletPort>18201</core.igtMonitorGroup.SGPWalletPort>
   <core.sgpWalletMonitorGroup.IGTIpAddress>localhost</core.sgpWalletMonitorGroup.IGTIpAddress>
   <core.sgpWalletMonitorGroup.IGTPort>18200</core.sgpWalletMonitorGroup.IGTPort>
+  
+  <bally.sgpServiceLogListener.fileName>logs\sgp.log</bally.sgpServiceLogListener.fileName>
+   
+  <bally.dbProfiler.categorySource>Off</bally.dbProfiler.categorySource>
+  <bally.sysProfiler.categorySource>Off</bally.sysProfiler.categorySource>
+  <bally.rgsXT.categorySource>All</bally.rgsXT.categorySource>
+   
+  <bally.allEventsLog.specialSource>All</bally.allEventsLog.specialSource>
+  <bally.notProcessedLog.specialSource>All</bally.notProcessedLog.specialSource>
+  <bally.errorsLog.specialSource>All</bally.errorsLog.specialSource>
+
+  <bally.gameRTJsonEndpointBehaviour.helpEnabled>true</bally.gameRTJsonEndpointBehaviour.helpEnabled>
+  <bally.webXmlOverHttpEndpointBehavior.helpEnabled>true</bally.webXmlOverHttpEndpointBehavior.helpEnabled>
+  <bally.webJsonOverHttpEndpointBehaviour.helpEnabled>true</bally.webJsonOverHttpEndpointBehaviour.helpEnabled>
+  <bally.netNamedPipeEndpointBehaviour.integrationToken>IGT</bally.netNamedPipeEndpointBehaviour.integrationToken>
+   
+  <bally.standardServiceBehaviour.includeExceptionDetailInFaults>true</bally.standardServiceBehaviour.includeExceptionDetailInFaults>
+  <bally.standardServiceBehaviour.httpHelpPageEnabled>true</bally.standardServiceBehaviour.httpHelpPageEnabled>
+
+  <bally.operator>Casino 6601</bally.operator>
+  <bally.version>1.0.0</bally.version>
+  <bally.status>Alive</bally.status>
   
 </envConfig>

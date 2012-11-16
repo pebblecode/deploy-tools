@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Management.Automation;
@@ -14,10 +13,10 @@ namespace ConfigurationInjector
     /// <summary>
     /// Class to create a powershell comand, that injects configuration located at "settings.xml" in XXX.exe.config files, using the XXX.config.map.xml
     /// </summary> 
-    [System.Management.Automation.Cmdlet(System.Management.Automation.VerbsCommon.Set, "Configuration")]
-    public class SetConfigurationCommand : System.Management.Automation.PSCmdlet
+    [Cmdlet(VerbsCommon.Set, "Configuration")]
+    public class SetConfigurationCommand : PSCmdlet
     {
-        [System.Management.Automation.Parameter(Mandatory = true, Position = 0, HelpMessage = "The directory of the configuration files.")]
+        [Parameter(Mandatory = true, Position = 0, HelpMessage = "The directory of the configuration files.")]
         public string WorkingDirectory;
 
         private string WorkingDirectoryFormatted
