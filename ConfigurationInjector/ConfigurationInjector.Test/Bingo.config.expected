@@ -146,6 +146,8 @@
     <add key="minSecondsBetweenClientHeartbeats" value="10" />
     <add key="heartbeatGroupsPerRoom" value="10" />
     <add key="heartbeatOffsetPerRoomSeconds" value="10" />
+    <!-- This is the timezone this instance of the bingo engine is running in, it is a timezone as defined in the Olson DB : http://www.iana.org/time-zones -->
+    <add key="timezoneEngineRunningIn" value="Europe/London" />
   </appSettings>
   <system.serviceModel>
     <behaviors>

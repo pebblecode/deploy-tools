@@ -32,6 +32,7 @@
   <bingo.minSecondsBetweenClientHeartbeats>10</bingo.minSecondsBetweenClientHeartbeats>
   <bingo.heartbeatGroupsPerRoom>10</bingo.heartbeatGroupsPerRoom>
   <bingo.heartbeatOffsetPerRoomSeconds>10</bingo.heartbeatOffsetPerRoomSeconds>
+  <bingo.timezoneEngineRunningIn>Europe/London</bingo.timezoneEngineRunningIn>
   
   <bingo.systemLogListener.fileName>..\logs\_engine.log</bingo.systemLogListener.fileName>
   <bingo.serverLogListener.fileName>..\logs\_engine_errors.log</bingo.serverLogListener.fileName>
