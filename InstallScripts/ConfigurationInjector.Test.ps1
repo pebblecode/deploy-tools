@@ -46,7 +46,7 @@ function AssertConfigFilesAreEqual([string]$configFileName)
 	$actual = [xml](Get-Content ($tempDirectoryPath + "\" + $configFileName))
 	$expected = [xml](Get-Content ($tempDirectoryPath + "\" + $configFileName + ".expected"))
 	if (!($actual.InnerXml -eq $expected.InnerXml)){
-		throw "SGPCore config file injection failed"
+		throw $configFileName + " file injection failed"
 	} 
 }
 
