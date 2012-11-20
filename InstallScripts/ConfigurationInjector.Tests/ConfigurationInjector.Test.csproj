@@ -37,9 +37,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Management">
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Management.Automation, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\WindowsPowerShell\v1.0\System.Management.Automation.dll</HintPath>
@@ -83,6 +80,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </Content>
+    <None Include="..\ConfigurationInjector.psm1">
+      <Link>ConfigurationInjector.psm1</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Bally.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -107,13 +108,6 @@
     <None Include="SGPCore.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ConfigurationInjector\ConfigurationInjector.csproj">
-      <Project>{e7dc62a2-c8c1-42ae-ad97-8a2b593472d3}</Project>
-      <Name>ConfigurationInjector</Name>
-      <Private>True</Private>
-    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

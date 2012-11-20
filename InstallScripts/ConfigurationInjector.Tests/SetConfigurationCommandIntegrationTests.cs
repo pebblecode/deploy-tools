@@ -29,15 +29,14 @@ namespace ConfigurationInjector.Test
         [DeploymentItem("GameLaunch.map.xml")]
         [DeploymentItem("System.Management.dll")]
         [DeploymentItem("System.Management.Automation.dll")]
-        [DeploymentItem("ConfigurationInjector.dll")]
-        [DeploymentItem("XML Schemas\\", "XML Schemas")]
+        [DeploymentItem("ConfigurationInjector.psm1")]
         public void SetConfiguration_TryInjectionMultipleFiles_FilesAreUpdated()
         {
             // Arrange
             var scriptText = String.Format(
                 @"
-                Import-Module ""{0}ConfigurationInjector.dll""
-                Set-Configuration -WorkingDirectory ""{0}""
+                Import-Module ""{0}ConfigurationInjector.psm1""
+                Set-Configuration -WorkingDirectory ""{0}"" -ExecutionPolicy ByPass
             ", GetAssemblyPath());
 
             // Act
@@ -87,6 +86,7 @@ namespace ConfigurationInjector.Test
 
             // create a pipeline and feed it the script text
             Pipeline pipeline = runspace.CreatePipeline();
+            pipeline.Commands.AddScript("Set-ExecutionPolicy Unrestricted");
             pipeline.Commands.AddScript(scriptText);
             pipeline.Commands.Add("Out-String");
 
