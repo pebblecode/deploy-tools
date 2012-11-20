@@ -184,6 +184,9 @@
   <map key="bingo.heartbeatOffsetPerRoomSeconds">
     <to>/configuration/appSettings/add[@key='heartbeatOffsetPerRoomSeconds']/@value</to>
   </map>
+  <map key="bingo.timezoneEngineRunningIn">
+    <to>/configuration/appSettings/add[@key='timezoneEngineRunningIn']/@value</to>
+  </map>
   <!--#####################################-->
 
 </mappings>
