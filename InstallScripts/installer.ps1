@@ -1,7 +1,7 @@
 $pwd = [System.IO.Directory]::GetCurrentDirectory().Replace(" ","`` ")
 
 # import and executre configuration injector
-Import-Module ./ConfigurationInjector.dll 
+Import-Module ./ConfigurationInjector.psm1
 Set-Configuration -WorkingDirectory $pwd
 
 # install the services
