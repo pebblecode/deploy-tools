@@ -26,8 +26,9 @@ Function Set-Configuration
 		InjectFiles
 		
 	} catch {
-		Write-Error $_.Exception.Message
-		exit 1
+		throw $_.Exception.Message
+		# commented out, because error handling is left to the caller
+		#exit 1
 	}
 }
 Function InjectFiles()

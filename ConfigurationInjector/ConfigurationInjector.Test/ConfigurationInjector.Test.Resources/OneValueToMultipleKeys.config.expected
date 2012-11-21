@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+
+  <appSettings>
+    <add key="db1.host" value="localhost" />
+    <add key="db1.name" value="sgp" />
+    <add key="db2.host" value="localhost" />
+    <add key="db2.name" value="sgp" />
+  </appSettings>
+
+</configuration>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+
+  <appSettings>
+    <add key="db.host" value="localhost" />
+    <add key="db.name" value="sgp" />
+    <add key="db.port" value="3400" />
+    <add key="db.user" value="gambler" />
+    <add key="db.password" value="g@mbl3r" />
+  </appSettings>
+
+</configuration>

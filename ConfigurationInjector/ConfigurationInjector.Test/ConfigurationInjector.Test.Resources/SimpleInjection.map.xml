@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" ?>
+<mappings>
+
+  <map key="core.dbHost">
+    <to>/configuration/appSettings/add[@key='db.host']/@value</to>
+  </map>
+  <map key="core.dbName">
+    <to>/configuration/appSettings/add[@key='db.name']/@value</to>
+  </map>
+  <map key="core.dbPort">
+    <to>/configuration/appSettings/add[@key='db.port']/@value</to>
+  </map>
+  <map key="core.dbUser">
+    <to>/configuration/appSettings/add[@key='db.user']/@value</to>
+  </map>
+  <map key="core.dbPassword">
+    <to>/configuration/appSettings/add[@key='db.password']/@value</to>
+  </map>
+ 
+</mappings>

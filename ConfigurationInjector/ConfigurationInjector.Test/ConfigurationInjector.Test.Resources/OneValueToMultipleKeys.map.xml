@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" ?>
+<mappings>
+
+  <map key="core.dbHost">
+    <to>/configuration/appSettings/add[@key='db1.host']/@value</to>
+    <to>/configuration/appSettings/add[@key='db2.host']/@value</to>
+  </map>
+  <map key="core.dbName">
+    <to>/configuration/appSettings/add[@key='db1.name']/@value</to>
+    <to>/configuration/appSettings/add[@key='db2.name']/@value</to>
+  </map>
+  
+</mappings>
