@@ -8,21 +8,21 @@ Function Set-Configuration
 	try
 	{
 
-        # define configuration constants
-        $settingsFileName = "settings.xml"
-	    $mappingFilesSuffix = ".map.xml"
-	    $configFilesSuffix = ".config"
-		
+		# define configuration constants
+		$settingsFileName = "settings.xml"
+		$mappingFilesSuffix = ".map.xml"
+		$configFilesSuffix = ".config"
+
 		# add slash to the end of the directory name if none 
-	    if (!$workingDirectory.EndsWith("\")){ $workingDirectory = $workingDirectory + "\" }
-		
+		if (!$workingDirectory.EndsWith("\")){ $workingDirectory = $workingDirectory + "\" }
+
 		# check if working directory exists
-	    CheckIfWorkingDirectoryExists
-		
+		CheckIfWorkingDirectoryExists
+
 		# check if settings file exists
-	    CheckIfSettingsFileExists
-	   	
-	    # inject files
+		CheckIfSettingsFileExists
+
+		# inject files
 		InjectFiles
 		
 	} catch {
