@@ -1,4 +1,4 @@
-# Command to inject configuration located at "settings.xml" in XXX.exe.config files, using the XXX.config.map.xml
+# Command to inject configuration located at "settings.xml" in [FooAssembly].config files, using the [FooAssembly].map.xml
 Function Set-Configuration
 {
     param (
