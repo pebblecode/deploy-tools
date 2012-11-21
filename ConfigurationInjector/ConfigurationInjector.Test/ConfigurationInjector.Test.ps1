@@ -17,7 +17,7 @@ function TestConfigurationInjector
 			Copy-Item ($testDirectoryPath + "\*") $tempDirectoryPath
 			
 			# import configuration injector
-			Import-Module ./ConfigurationInjector.psm1
+			Import-Module ../ConfigurationInjector.psm1
 			
 		# Act
 			Set-Configuration -WorkingDirectory $tempDirectoryPath
