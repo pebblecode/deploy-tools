@@ -38,6 +38,8 @@ function TestConfigurationInjector
 	{
 		Remove-Item -Recurse -Force $tempDirectoryPath
 		Remove-Module ConfigurationInjector	
+		
+		Write-Debug "Test 'TestConfigurationInjector' passed successfully!"
 	}
 }
 # define helper function
