@@ -135,7 +135,7 @@ function SetConfiguration_NoConfigFileForMappingFile_NoError
 			# create temp dir and copy all the test resources to it
 			New-Item -ItemType directory -Path $tempDirectoryPath
 			Copy-Item ($testDirectoryPath + "\*") $tempDirectoryPath
-			New-Item -ItemType file -Path ($tempDirectoryPath + "NoConfigFileForMappingFile.map.xml")
+			New-Item -ItemType file -Path ($tempDirectoryPath + "\NoConfigFileForMappingFile.map.xml")
 			
 			# import configuration injector
 			Import-Module ../ConfigurationInjector.psm1
