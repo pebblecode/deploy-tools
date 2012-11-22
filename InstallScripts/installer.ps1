@@ -1,9 +1,9 @@
 try
 {
-	$pwd = [System.IO.Directory]::GetCurrentDirectory().Replace(" ","`` ")
-
+	$pwd = split-path -parent $MyInvocation.MyCommand.Definition
+	
 	# import and executre configuration injector
-	Import-Module ./ConfigurationInjector.psm1
+	Import-Module ($pwd + "./ConfigurationInjector.psm1")
 	Set-Configuration -WorkingDirectory $pwd
 
 	# install the services
@@ -15,4 +15,3 @@ catch
 	Write-Error $_.Exception.Message
 	exit 1
 }
-

@@ -86,7 +86,10 @@ Function InjectValue($key, $mapToElement)
 	$toElements = $configDoc | Select-Xml -XPath $mapToElement
 	foreach($elem in $toElements)
 	{
-		$elem.Node.set_Value($value)
+		if ($elem -ne $null)
+		{
+			$elem.Node.set_Value($value)
+		}
 	}
 }
 Function ExtractConfigFileName([string]$mappingFile)
