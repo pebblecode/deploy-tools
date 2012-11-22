@@ -89,6 +89,11 @@ Function InjectValue($key, $mapToElement)
 		if ($elem -ne $null)
 		{
 			$elem.Node.set_Value($value)
+		} 
+		else 
+		{
+			$warning = "Value for '" + $key + "' can't be injected (Check if following xpath '" + $mapToElement + "' has a valid match in '" + $configFile + "')"
+			Write-Warning $warning
 		}
 	}
 }
