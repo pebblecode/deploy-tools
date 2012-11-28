@@ -35,7 +35,6 @@ try{
     Deploy
 }catch{
 	Write-Error $_.Exception.Message
-Read-Host
 	exit 1
 
 }
