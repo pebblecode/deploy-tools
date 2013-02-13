@@ -123,5 +123,75 @@ Function UnInstallService
     echo "service uninstalled"
 }
 
+#This function will perfom a few tests to enusure the basic health of an installed service
+Function SmokeTestBingoService
+{
+    [CmdletBinding()] 
+    PARAM ([Parameter(Mandatory=$True, HelpMessage="Path to the service")] [String] $Path)
+
+    echo ("running smoke test on "+  $Path)
+    Set-Location ([string] $Path)
+
+    #Check for presence of log file _engine.log
+    CheckFileExistsOrDie ("..\Logs\_engine.log")
+    $engineLog =([string](Get-Content "..\Logs\_engine.log"))
+
+    #Check for absence of error log file _engine_errors.log
+    CheckFileAbsentOrDie("..\Logs\_engine_errors.log")
+
+    #Check for absence of logging error file exceptionDump.txt (occurs in binaries install dir, not logs subdirectory)
+    CheckFileAbsentOrDie("exceptionDump.txt")
+
+   # Check the _engine.log to ensure a game has been scheduled, by checking for presence of the following log messages:
+   #31-01 09:05:06    Scheduler       Info      SCHED,ID:076741 EVENT,ID:088541 Event created
+   #31-01 09:05:06    Scheduler       Info      SCHED,ID:076741 EVENT,ID:088541 Starting game.
+   #31-01 09:05:06    Scheduler       Info      SCHED,ID:076741 ROOM,ID:000031 Opening room
+
+   $eventCreatedRegex = '[0-9][0-9]-[0-9][0-9].[0-9][0-9]:[0-9][0-9]:[0-9][0-9].*Scheduler.*SCHED,ID:[0-9]*.EVENT,ID:[0-9]*.Event.created'
+   IsRegexMatchOrDie $engineLog $eventCreatedRegex 
+
+   $startingGameRegex = '[0-9][0-9]-[0-9][0-9].[0-9][0-9]:[0-9][0-9]:[0-9][0-9].*Scheduler.*SCHED,ID:[0-9]*.EVENT,ID:[0-9]*.Starting.game'
+   IsRegexMatchOrDie $engineLog $startingGameRegex
+
+   $OpenRoomRegex = '[0-9][0-9]-[0-9][0-9].[0-9][0-9]:[0-9][0-9]:[0-9][0-9].*Scheduler.*SCHED,ID:[0-9]*.ROOM,ID:[0-9]*.Opening.room'
+   IsRegexMatchOrDie $engineLog $OpenRoomRegex
+
+   echo "All smoke tests passed successfully! http://img.xzoom.in/21processed/success%20kid.jpg"
+}
+
+Function CheckFileAbsentOrDie($fileName)
+{
+    echo ("Checking for presence of " + $fileName)
+    if(!(Test-Path $fileName)){
+        echo ($fileName + "does not exists")
+    }
+    else {
+       throw ($fileName + " exists! Test failure");
+    }
+}
+
+
+Function IsRegexMatchOrDie($text,$regex)
+{
+    echo ("Checking for regex match " + $regex)
+    if($text -match $regex){
+     echo ("match")
+    }
+    else{
+       throw ($regex + " no match! Test failure");
+    }
+}
+
+Function CheckFileExistsOrDie($fileName)
+{
+    echo ("Checking for presence of " + $fileName)
+    if(Test-Path $fileName){
+        echo ($fileName + " exists")
+    }
+    else {
+       throw ($fileName + " does not exist! Test failure");
+    }
+}
+export-modulemember SmokeTestBingoService
 export-modulemember UnInstallService
 export-modulemember InstallService
