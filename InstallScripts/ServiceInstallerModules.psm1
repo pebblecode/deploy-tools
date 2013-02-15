@@ -6,9 +6,15 @@
 #Dependencies are; valid config file, .netfamework 4.0 and Administrator previlidges
 Function InstallService
 {
-    param ([string] $rootInstallDirectory,[string] $baseServiceName, [string] $installerFile)
-
-
+    [CmdletBinding()] 
+    PARAM ( 
+        [Parameter(Mandatory=$True, HelpMessage="Root install directory")] [String] $rootInstallDirectory,
+        [Parameter(Mandatory=$True, HelpMessage="Base service Name")] [String] $baseServiceName,
+        [Parameter(Mandatory=$True, HelpMessage="Installer file")] [String] $installerFile,
+        [Parameter(Mandatory=$false, HelpMessage="Start service")] [bool] $startService = 1
+    ) 
+   
+    PROCESS {
     $configFile =  [System.IO.Directory]::GetCurrentDirectory() + "\settings.xml"
     if(!$configFile)
     {
@@ -58,10 +64,13 @@ Function InstallService
     $commmand =$instalUtilPath + (" /i" + " /environment="+$environmentName + ' "' + $targetDir +"\" + $installerFile+ '"')
     echo ("Running " + $commmand)
     Invoke-Expression $commmand
-    echo "Installed, starting service"
-    Start-Service -displayname ($baseServiceName + " "+ $environmentName)
+    if($startService)
+    {
+        echo "Starting service"
+        Start-Service -displayname ($baseServiceName + " "+ $environmentName)
+    }
     echo "Install complete"
-
+  }
 }
 
 #This function will remove the given service.It moves files to a backup directory
