@@ -6,7 +6,7 @@ try
 	Import-Module $baseDir\ConfigurationInjector.psm1 -DisableNameChecking
 	Set-Configuration -WorkingDirectory $baseDir
 	
-	$installScript = (Resolve-Path "$baseDir\ServiceInstallerModules.psm1").Path
+	$installScript = (Resolve-Path "$baseDir\installerSub.ps1").Path
 
 	$baseDir = $baseDir -replace " ", "`` "
 	$installScript = $installScript -replace " ", "`` "

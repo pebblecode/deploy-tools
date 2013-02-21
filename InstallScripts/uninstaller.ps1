@@ -1,7 +1,7 @@
 try
 {
 	$baseDir = split-path -parent $MyInvocation.MyCommand.Definition
-	$uninstallScript = (Resolve-Path "$baseDir\ServiceInstallerModules.psm1").Path
+	$uninstallScript = (Resolve-Path "$baseDir\uninstallerSub.ps1").Path
 	
 	$baseDir = $baseDir -replace " ", "`` "
 	$uninstallScript = $uninstallScript -replace " ", "`` "
