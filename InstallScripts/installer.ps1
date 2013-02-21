@@ -1,13 +1,20 @@
 try
 {
-	$pwd = split-path -parent $MyInvocation.MyCommand.Definition
+	$baseDir = split-path -parent $MyInvocation.MyCommand.Definition
 	
 	# import and executre configuration injector
-	Import-Module ($pwd + "./ConfigurationInjector.psm1")
-	Set-Configuration -WorkingDirectory $pwd
+	Import-Module $baseDir\ConfigurationInjector.psm1 -DisableNameChecking
+	Set-Configuration -WorkingDirectory $baseDir
+	
+	$installScript = (Resolve-Path "$baseDir\ServiceInstallerModules.psm1").Path
+
+	$baseDir = $baseDir -replace " ", "`` "
+	$installScript = $installScript -replace " ", "`` "
 
 	# install the services
-	$command = "Start-Process '$psHome\powershell.exe' -Verb Runas -ArgumentList '" + $pwd + "\installerSub.ps1 -dir " + $pwd + "'"
+	$command = "Start-Process '$psHome\powershell.exe' -Verb Runas -ArgumentList '" + $installScript + " -dir " + $baseDir + "'"
+
+	Write-Host $command 
 	Invoke-Expression $command
 } 
 catch
