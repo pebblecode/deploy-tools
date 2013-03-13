@@ -82,7 +82,7 @@ Function InjectFile([string]$mappingFile){
 }
 Function InjectValue($key, $mapToElement)
 {
-	$value = $settingsDoc.envConfig.$key
+	$value = GetValue($key) 
 	$toElements = $configDoc | Select-Xml -XPath $mapToElement
 	foreach($elem in $toElements)
 	{
@@ -127,7 +127,28 @@ Function GetFullPath([string]$relativePath)
 	[string]$fullPath = $workingDirectory + $relativePath
 	return $fullPath
 }
-
+Function GetValue($key)
+{
+	[string]$value = $settingsDoc.envConfig.$key
+	
+	# if value contains references to other elements -> replace them in the value string
+	
+	#$value -match "\$[^\$]+\$"
+	
+	$matches = [regex]::Matches($value, "\$[^\$]+\$")
+	
+	if ($matches.Count -gt 0)
+	{
+		for ($i = 0; $i -lt $matches.Count; $i++)
+		{
+			$refElem = $matches[$i].Value.Replace("$", "")
+			$refElemValue = $settingsDoc.envConfig.$refElem
+			$value = $value.Replace($matches[$i].Value, $refElemValue)
+		}
+	}
+	
+	return $value
+}
 
 # define public functions
 export-modulemember Set-Configuration

@@ -6,5 +6,7 @@
   <core.dbPort>3400</core.dbPort>
   <core.dbUser>gambler</core.dbUser>
   <core.dbPassword>g@mbl3r</core.dbPassword>
-  
+  <core.host>someaddress</core.host>
+  <core.port>someport</core.port>
+  <core.gameRtAddress>$core.host$:$core.port$/GameRT/1/3</core.gameRtAddress>
 </envConfig>

@@ -143,7 +143,7 @@ function SetConfiguration_NoConfigFileForMappingFile_NoError
 		# Act
 			Set-Configuration -WorkingDirectory $tempDirectoryPath
 
-		# Assert		
+		# Assert	
 			PassOrFailMessage $true ("SetConfiguration_NoConfigFileForMappingFile_NoError")
 	}
 	catch 
@@ -182,6 +182,7 @@ function PassOrFailMessage([bool]$Passed, [string]$testName)
 # execute tests
 SetConfiguration_ValidMappingFiles_Valid "SimpleInjection.config"
 SetConfiguration_ValidMappingFiles_Valid "OneValueToMultipleKeys.config"
+SetConfiguration_ValidMappingFiles_Valid "IntraFileReferencing.config"
 SetConfiguration_NoConfigFileForMappingFile_NoError
 SetConfiguration_WrongWorkingDirectory_NotFoundException
 SetConfiguration_NoSettingsFile_NotFoundException
