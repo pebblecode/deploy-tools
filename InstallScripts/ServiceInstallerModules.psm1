@@ -151,7 +151,7 @@ Function SmokeTestBingoService
     #Check for absence of logging error file exceptionDump.txt (occurs in binaries install dir, not logs subdirectory)
     CheckFileAbsentOrDie("exceptionDump.txt")
 
-    Write-Output ('Log file data loaded as :' + $engineLog)
+   echo ('engine Log file data loaded as :' + $engineLog)
 
    # Check the _engine.log to ensure a game has been scheduled, by checking for presence of the following log messages:
    #31-01 09:05:06    Scheduler       Info      SCHED,ID:076741 EVENT,ID:088541 Event created
@@ -177,6 +177,8 @@ Function CheckFileAbsentOrDie($fileName)
         echo ($fileName + "does not exists")
     }
     else {
+       $data =([string](Get-Content $fileName))
+       echo ($fileName + ' data is ' + $data)
        throw ($fileName + " exists! Test failure");
     }
 }
